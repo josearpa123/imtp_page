@@ -859,3 +859,29 @@ html[data-theme="dark"] .cs-option.selected {
 @media (max-width: 480px) {
   .cs-list { max-height: 210px; }
 }
+
+/* =========================
+   HERO - CENTRADO ÓPTICO REAL (FIX)
+   ========================= */
+
+/* centra el bloque aunque haya estilos globales raros */
+.contacto-hero {
+  display: grid;
+  place-items: center;
+  text-align: center;
+}
+
+/* asegura que el wrapper realmente esté centrado */
+.contacto-hero .hero-content {
+  width: min(880px, 100%);
+  margin-inline: auto !important;
+  padding-inline: 1.25rem;
+  text-align: center;
+}
+
+/* clave: hace que el subtítulo NO sea una sola línea larguísima */
+.contacto-hero p {
+  max-width: 560px;     /* baja esto a 520 si aún lo ves “izq” */
+  margin-inline: auto !important;
+  text-wrap: pretty;    /* si el navegador lo soporta, mejora cortes */
+}
