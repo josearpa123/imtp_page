@@ -1,7 +1,5 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
-import { ThemeProvider } from './hooks/useTheme.jsx'
-
 
 // Pages
 import HomePage from './pages/HomePage'
@@ -10,6 +8,8 @@ import PortafolioPage from './pages/PortafolioPage'
 import NosotrosPage from './pages/NosotrosPage'
 import ContactoPage from './pages/ContactoPage'
 import CotizarPage from './pages/CotizarPage'
+import PrivacidadPage from './pages/PrivacidadPage'
+import TerminosPage from './pages/TerminosPage'
 
 // Servicios
 import WebPage from './pages/servicios/WebPage'
@@ -38,6 +38,8 @@ function App() {
         <Route path="/nosotros" element={<NosotrosPage />} />
         <Route path="/contacto" element={<ContactoPage />} />
         <Route path="/cotizar" element={<CotizarPage />} />
+        <Route path="/privacidad" element={<PrivacidadPage />} />
+        <Route path="/terminos" element={<TerminosPage />} />
       </Route>
 
       {/* Admin sin Layout público */}

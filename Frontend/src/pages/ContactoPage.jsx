@@ -3,7 +3,7 @@ import React, { useEffect, useMemo, useState, useRef } from "react";
 import "../styles/ContactoPage.css";
 
 const CONTACTO_INFO = {
-  email: "hola@imtpstudio.co",
+  email: "info@imtpstudios.com",
   whatsapp: "573001112233", // <-- inventado (sin +). Cambia por el real.
   horario: "Lun - Vie: 8:00 - 18:00 | Sáb: 9:00 - 13:00",
 };

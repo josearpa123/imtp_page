@@ -1,275 +1,155 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
-import "../../styles/AdminPages.css";
+import { useState } from 'react'
+import { useNavigate, Link } from 'react-router-dom'
+import { useTheme } from '../../hooks/useTheme'
+import '../../styles/AdminPages.css'
 
 export default function LoginPage() {
-  const navigate = useNavigate();
-  const [isLogin, setIsLogin] = useState(true);
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    password: "",
-    confirmPassword: "",
-    remember: false
-  });
-  const [showPassword, setShowPassword] = useState(false);
-  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
+  const navigate = useNavigate()
+  const { isDark } = useTheme()
+  const [step, setStep] = useState('email') // 'email' o 'password'
+  const [email, setEmail] = useState('')
+  const [password, setPassword] = useState('')
+  const [showPassword, setShowPassword] = useState(false)
+  const [isLoading, setIsLoading] = useState(false)
 
-  const handleChange = (e) => {
-    const { name, value, type, checked } = e.target;
-    setFormData(prev => ({
-      ...prev,
-      [name]: type === "checkbox" ? checked : value
-    }));
-  };
+  const handleEmailSubmit = (e) => {
+    e.preventDefault()
+    if (!email) return
+    setStep('password')
+  }
 
-  const handleSubmitLogin = (e) => {
-    e.preventDefault();
-    localStorage.setItem("imtp_admin", "true");
-    navigate("/admin/dashboard");
-  };
-
-  const handleSubmitRegister = (e) => {
-    e.preventDefault();
+  const handlePasswordSubmit = (e) => {
+    e.preventDefault()
+    if (!password) return
     
-    if (formData.password !== formData.confirmPassword) {
-      alert("Las contraseñas no coinciden");
-      return;
-    }
+    setIsLoading(true)
+    
+    // Simular autenticación
+    setTimeout(() => {
+      localStorage.setItem('imtp_admin', 'true')
+      navigate('/admin/dashboard')
+    }, 800)
+  }
 
-    if (formData.password.length < 6) {
-      alert("La contraseña debe tener al menos 6 caracteres");
-      return;
-    }
-
-    localStorage.setItem("imtp_admin", "true");
-    navigate("/admin/dashboard");
-  };
-
-  const toggleForm = () => {
-    setIsLogin(!isLogin);
-    setFormData({
-      name: "",
-      email: "",
-      password: "",
-      confirmPassword: "",
-      remember: false
-    });
-    setShowPassword(false);
-    setShowConfirmPassword(false);
-  };
+  const handleBack = () => {
+    setStep('email')
+    setPassword('')
+  }
 
   return (
-    <div className="login-page-wrapper">
-      <div className="auth-container">
-        {/* Panel lateral izquierdo */}
-        <div className="auth-sidebar">
-          <div className="sidebar-content">
-            <div className="sidebar-icon">🚀</div>
-            <h2>
-              {isLogin 
-                ? "Bienvenido de vuelta" 
-                : "Únete a nosotros"}
-            </h2>
-            <p>
-              {isLogin
-                ? "Ingresa tus credenciales para acceder al panel de administración"
-                : "Crea tu cuenta y comienza a gestionar tu plataforma"}
-            </p>
-            <ul className="feature-list">
-              <li>Panel de control completo</li>
-              <li>Análisis en tiempo real</li>
-              <li>Seguridad garantizada</li>
-              <li>Soporte 24/7</li>
-            </ul>
-          </div>
+    <div className="auth-page-simple">
+      {/* Background */}
+      <div className="auth-bg-simple" />
+
+      {/* Card */}
+      <div className="auth-card-simple">
+        {/* Botón de regreso expandible */}
+        <Link to="/" className="auth-back-btn-circle">
+          <svg className="back-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M10 19l-7-7m0 0l7-7m-7 7h18"/>
+          </svg>
+          <span className="back-text">Regresar</span>
+        </Link>
+
+        {/* Logo */}
+        <div className="auth-logo-simple">
+          <img 
+            src={isDark ? "/assets/images/logo-color.png" : "/assets/images/logo.png"} 
+            alt="IMTP Studios"
+          />
         </div>
 
-        {/* Panel del formulario */}
-        <div className="auth-form-panel">
-          <div className="form-content" key={isLogin ? 'login' : 'register'}>
-            <div className="form-header">
-              <h1>{isLogin ? "Iniciar Sesión" : "Crear Cuenta"}</h1>
-              <p>
-                {isLogin 
-                  ? "Ingresa tus datos para continuar"
-                  : "Completa el formulario para registrarte"}
-              </p>
+        {/* Título */}
+        <div className="auth-header-simple">
+          <h1>Iniciar sesión</h1>
+          <p>Inicia sesión o crea una cuenta</p>
+        </div>
+
+        {/* Formulario Email */}
+        {step === 'email' && (
+          <form onSubmit={handleEmailSubmit} className="auth-form-simple">
+            <div className="auth-field-simple">
+              <input
+                type="email"
+                placeholder="Correo electrónico"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                required
+                autoFocus
+              />
             </div>
 
-            {isLogin ? (
-              <form onSubmit={handleSubmitLogin} className="auth-form">
-                <div className="form-group">
-                  <label htmlFor="email">Correo Electrónico</label>
-                  <div className="input-wrapper">
-                    <span className="input-icon">📧</span>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="form-input"
-                      placeholder="tu@email.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      autoComplete="email"
-                    />
-                  </div>
-                </div>
+            <button type="submit" className="auth-btn-simple">
+              Continuar
+            </button>
+          </form>
+        )}
 
-                <div className="form-group">
-                  <label htmlFor="password">Contraseña</label>
-                  <div className="input-wrapper">
-                    <span className="input-icon">🔒</span>
-                    <input
-                      id="password"
-                      name="password"
-                      type={showPassword ? "text" : "password"}
-                      className="form-input"
-                      placeholder="Tu contraseña"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-                      autoComplete="current-password"
-                    />
-                    <button
-                      type="button"
-                      className="password-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? "👁️" : "👁️‍🗨️"}
-                    </button>
-                  </div>
-                </div>
-
-                <div className="form-footer">
-                  <label className="remember-me">
-                    <input
-                      type="checkbox"
-                      name="remember"
-                      checked={formData.remember}
-                      onChange={handleChange}
-                    />
-                    Recordarme
-                  </label>
-                  <button type="button" className="forgot-link">
-                    ¿Olvidaste tu contraseña?
-                  </button>
-                </div>
-
-                <button type="submit" className="submit-btn">
-                  Iniciar Sesión
+        {/* Formulario Password */}
+        {step === 'password' && (
+          <form onSubmit={handlePasswordSubmit} className="auth-form-simple">
+            <div className="auth-field-simple">
+              <div className="auth-email-display">
+                <span>{email}</span>
+                <button type="button" onClick={handleBack} className="auth-change-btn">
+                  Cambiar
                 </button>
-              </form>
-            ) : (
-              <form onSubmit={handleSubmitRegister} className="auth-form">
-                <div className="form-group">
-                  <label htmlFor="name">Nombre Completo</label>
-                  <div className="input-wrapper">
-                    <span className="input-icon">👤</span>
-                    <input
-                      id="name"
-                      name="name"
-                      type="text"
-                      className="form-input"
-                      placeholder="Juan Pérez"
-                      value={formData.name}
-                      onChange={handleChange}
-                      required
-                      autoComplete="name"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="email">Correo Electrónico</label>
-                  <div className="input-wrapper">
-                    <span className="input-icon">📧</span>
-                    <input
-                      id="email"
-                      name="email"
-                      type="email"
-                      className="form-input"
-                      placeholder="tu@email.com"
-                      value={formData.email}
-                      onChange={handleChange}
-                      required
-                      autoComplete="email"
-                    />
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="password">Contraseña</label>
-                  <div className="input-wrapper">
-                    <span className="input-icon">🔒</span>
-                    <input
-                      id="password"
-                      name="password"
-                      type={showPassword ? "text" : "password"}
-                      className="form-input"
-                      placeholder="Mínimo 6 caracteres"
-                      value={formData.password}
-                      onChange={handleChange}
-                      required
-                      minLength={6}
-                      autoComplete="new-password"
-                    />
-                    <button
-                      type="button"
-                      className="password-toggle"
-                      onClick={() => setShowPassword(!showPassword)}
-                    >
-                      {showPassword ? "👁️" : "👁️‍🗨️"}
-                    </button>
-                  </div>
-                </div>
-
-                <div className="form-group">
-                  <label htmlFor="confirmPassword">Confirmar Contraseña</label>
-                  <div className="input-wrapper">
-                    <span className="input-icon">🔒</span>
-                    <input
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      type={showConfirmPassword ? "text" : "password"}
-                      className="form-input"
-                      placeholder="Repite tu contraseña"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                      required
-                      minLength={6}
-                      autoComplete="new-password"
-                    />
-                    <button
-                      type="button"
-                      className="password-toggle"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    >
-                      {showConfirmPassword ? "👁️" : "👁️‍🗨️"}
-                    </button>
-                  </div>
-                </div>
-
-                <button type="submit" className="submit-btn">
-                  Crear Cuenta
-                </button>
-              </form>
-            )}
-
-            <div className="form-toggle">
-              <p>
-                {isLogin 
-                  ? "¿No tienes una cuenta?" 
-                  : "¿Ya tienes una cuenta?"}
-              </p>
-              <button type="button" className="toggle-btn" onClick={toggleForm}>
-                {isLogin ? "Regístrate aquí" : "Inicia Sesión"}
-              </button>
+              </div>
             </div>
+
+            <div className="auth-field-simple">
+              <div className="auth-password-wrapper">
+                <input
+                  type={showPassword ? 'text' : 'password'}
+                  placeholder="Contraseña"
+                  value={password}
+                  onChange={(e) => setPassword(e.target.value)}
+                  required
+                  autoFocus
+                />
+                <button
+                  type="button"
+                  className="auth-password-toggle-simple"
+                  onClick={() => setShowPassword(!showPassword)}
+                >
+                  {showPassword ? (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M17.94 17.94A10.07 10.07 0 0 1 12 20c-7 0-11-8-11-8a18.45 18.45 0 0 1 5.06-5.94M9.9 4.24A9.12 9.12 0 0 1 12 4c7 0 11 8 11 8a18.5 18.5 0 0 1-2.16 3.19m-6.72-1.07a3 3 0 1 1-4.24-4.24"/>
+                      <line x1="1" y1="1" x2="23" y2="23"/>
+                    </svg>
+                  ) : (
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                      <path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/>
+                      <circle cx="12" cy="12" r="3"/>
+                    </svg>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            <button type="submit" className="auth-btn-simple" disabled={isLoading}>
+              {isLoading ? (
+                <>
+                  <span className="auth-spinner" />
+                  Ingresando...
+                </>
+              ) : (
+                'Continuar'
+              )}
+            </button>
+          </form>
+        )}
+
+        {/* Footer */}
+        <div className="auth-footer-simple">
+          <p>Solo para administradores de IMTP Studios</p>
+          <div className="auth-footer-links">
+            <Link to="/privacidad">Política de privacidad</Link>
+            <span className="auth-footer-separator">·</span>
+            <Link to="/terminos">Términos del servicio</Link>
           </div>
         </div>
       </div>
     </div>
-  );
+  )
 }
