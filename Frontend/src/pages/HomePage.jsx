@@ -6,28 +6,28 @@ const familias = [
     id: 'web',
     title: 'Páginas Web y Presencia Digital',
     description: 'Desde landing pages hasta plataformas completas. Tu presencia digital profesional.',
-    path: '/soluciones/web',
+    path: '/servicios/web',
     icon: '🌐'
   },
   {
     id: 'software',
     title: 'Sistemas y Software a Medida',
     description: 'Soluciones diseñadas específicamente para las necesidades de tu negocio.',
-    path: '/soluciones/software',
+    path: '/servicios/software',
     icon: '⚙️'
   },
   {
     id: 'automatizacion',
     title: 'Automatización y Soluciones Internas',
     description: 'Optimiza procesos, reduce tareas manuales e integra sistemas existentes.',
-    path: '/soluciones/automatizacion',
+    path: '/servicios/automatizacion',
     icon: '🔄'
   },
   {
     id: 'marketing',
     title: 'Diseño y Marketing Digital',
     description: 'Identidad visual y estrategias digitales alineadas con tus objetivos.',
-    path: '/soluciones/marketing',
+    path: '/servicios/marketing',
     icon: '📈'
   }
 ]
@@ -48,8 +48,8 @@ function HomePage() {
               impulsan el crecimiento de tu negocio.
             </p>
             <div className="hero-ctas">
-              <Link to="/soluciones" className="btn-primary">
-                Ver Soluciones
+              <Link to="/servicios" className="btn-primary">
+                Ver Servicios
               </Link>
               <Link to="/cotizar" className="btn-secondary">
                 Cotizar Proyecto
@@ -59,13 +59,13 @@ function HomePage() {
         </div>
       </section>
 
-      {/* Familias de Solución */}
+      {/* Familias de Servicio */}
       <section className="soluciones-section">
         <div className="container">
           <div className="section-header">
             <h2 className="section-title">¿Qué problema necesitas resolver?</h2>
             <p className="section-subtitle">
-              Organizamos nuestras soluciones por el impacto que generan en tu negocio.
+              Organizamos nuestros servicios por el impacto que generan en tu negocio.
             </p>
           </div>
 

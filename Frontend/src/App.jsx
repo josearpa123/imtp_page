@@ -1,20 +1,22 @@
 import { Routes, Route } from 'react-router-dom'
 import Layout from './components/layout/Layout'
+import { ThemeProvider } from './hooks/useTheme.jsx'
+
 
 // Pages
 import HomePage from './pages/HomePage'
-import SolucionesPage from './pages/SolucionesPage'
+import ServiciosPage from './pages/ServiciosPage'
 import PortafolioPage from './pages/PortafolioPage'
 import NosotrosPage from './pages/NosotrosPage'
 import ContactoPage from './pages/ContactoPage'
 import CotizarPage from './pages/CotizarPage'
 
-// Soluciones
-import WebPage from './pages/soluciones/WebPage'
-import SoftwarePage from './pages/soluciones/SoftwarePage'
-import AutomatizacionPage from './pages/soluciones/AutomatizacionPage'
-import MarketingPage from './pages/soluciones/MarketingPage'
-import AcademicoPage from './pages/soluciones/AcademicoPage'
+// Servicios
+import WebPage from './pages/servicios/WebPage'
+import SoftwarePage from './pages/servicios/SoftwarePage'
+import AutomatizacionPage from './pages/servicios/AutomatizacionPage'
+import MarketingPage from './pages/servicios/MarketingPage'
+import AcademicoPage from './pages/servicios/AcademicoPage'
 
 // Admin
 import LoginPage from './pages/admin/LoginPage'
@@ -26,12 +28,12 @@ function App() {
       {/* Rutas públicas con Layout */}
       <Route element={<Layout />}>
         <Route path="/" element={<HomePage />} />
-        <Route path="/soluciones" element={<SolucionesPage />} />
-        <Route path="/soluciones/web" element={<WebPage />} />
-        <Route path="/soluciones/software" element={<SoftwarePage />} />
-        <Route path="/soluciones/automatizacion" element={<AutomatizacionPage />} />
-        <Route path="/soluciones/marketing" element={<MarketingPage />} />
-        <Route path="/soluciones/academico" element={<AcademicoPage />} />
+        <Route path="/servicios" element={<ServiciosPage />} />
+        <Route path="/servicios/web" element={<WebPage />} />
+        <Route path="/servicios/software" element={<SoftwarePage />} />
+        <Route path="/servicios/automatizacion" element={<AutomatizacionPage />} />
+        <Route path="/servicios/marketing" element={<MarketingPage />} />
+        <Route path="/servicios/academico" element={<AcademicoPage />} />
         <Route path="/portafolio" element={<PortafolioPage />} />
         <Route path="/nosotros" element={<NosotrosPage />} />
         <Route path="/contacto" element={<ContactoPage />} />

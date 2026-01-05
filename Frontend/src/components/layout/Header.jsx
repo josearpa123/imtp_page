@@ -1,170 +1,132 @@
 import { useState } from 'react'
 import { Link, NavLink } from 'react-router-dom'
+import { useTheme } from '../../hooks/useTheme'
+import ThemeToggle from '../ThemeToggle'
 import '../../styles/Header.css'
 
-const solucionesLinks = [
-  { path: '/soluciones/web', label: 'Páginas Web y Presencia Digital' },
-  { path: '/soluciones/software', label: 'Sistemas y Software a Medida' },
-  { path: '/soluciones/automatizacion', label: 'Automatización y Soluciones Internas' },
-  { path: '/soluciones/marketing', label: 'Diseño y Marketing Digital' },
-  { path: '/soluciones/academico', label: 'Soluciones Académicas' },
-]
-
 function Header() {
-  const [mobileOpen, setMobileOpen] = useState(false)
-  const [dropdownOpen, setDropdownOpen] = useState(false)
-  const [searchOpen, setSearchOpen] = useState(false)
+  const [menuOpen, setMenuOpen] = useState(false)
+  const [serviciosOpen, setServiciosOpen] = useState(false)
+  const { isDark } = useTheme()
 
-  const toggleMobile = () => setMobileOpen(!mobileOpen)
-  const closeMobile = () => setMobileOpen(false)
+  const toggleMenu = () => setMenuOpen(!menuOpen)
 
   return (
     <header className="header">
-      <div className="container header-inner">
-        {/* Logo */}
-        <Link to="/" className="logo" onClick={closeMobile}>
-          <span className="logo-text">IMTP</span>
-          <span className="logo-accent">Studios</span>
-        </Link>
+      <div className="container">
+        <div className="header-inner">
+          {/* Logo - cambia según tema */}
+          <Link to="/" className="logo">
+            <img 
+              src={isDark ? "/assets/images/logo-color.png" : "/assets/images/logo.png"} 
+              alt="IMTP Studios" 
+              className="logo-image"
+            />
+          </Link>
 
-        {/* Desktop Nav */}
-        <nav className="desktop-nav">
-          <NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            Inicio
-          </NavLink>
-
-          <div 
-            className="dropdown"
-            onMouseEnter={() => setDropdownOpen(true)}
-            onMouseLeave={() => setDropdownOpen(false)}
-          >
-            <NavLink 
-              to="/soluciones" 
-              className={({ isActive }) => isActive ? 'active-link' : ''}
-            >
-              Soluciones
-              <svg className="chevron" viewBox="0 0 20 20" fill="currentColor">
-                <path fillRule="evenodd" d="M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z" clipRule="evenodd" />
-              </svg>
+          {/* Desktop Navigation */}
+          <nav className="desktop-nav">
+            <NavLink to="/" className={({ isActive }) => isActive ? 'active-link' : ''}>
+              Inicio
             </NavLink>
 
-            <div className={`dropdown-menu ${dropdownOpen ? 'show' : ''}`}>
-              {solucionesLinks.map(link => (
-                <Link key={link.path} to={link.path} className="dropdown-item">
-                  {link.label}
-                </Link>
-              ))}
-            </div>
-          </div>
-
-          <NavLink to="/portafolio" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            Portafolio
-          </NavLink>
-          <NavLink to="/nosotros" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            Nosotros
-          </NavLink>
-          <NavLink to="/contacto" className={({ isActive }) => isActive ? 'active-link' : ''}>
-            Contacto
-          </NavLink>
-        </nav>
-
-        {/* Header Actions */}
-        <div className="header-actions">
-          {/* Search */}
-          <div className="search-container">
-            <button 
-              className="icon-button" 
-              onClick={() => setSearchOpen(!searchOpen)}
-              aria-label="Buscar"
+            {/* Dropdown Servicios */}
+            <div 
+              className="dropdown"
+              onMouseEnter={() => setServiciosOpen(true)}
+              onMouseLeave={() => setServiciosOpen(false)}
             >
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <circle cx="11" cy="11" r="8"/>
-                <path d="m21 21-4.35-4.35"/>
-              </svg>
-            </button>
-            <div className={`search-dropdown ${searchOpen ? 'show' : ''}`}>
-              <input 
-                type="text" 
-                placeholder="Buscar..." 
-                className="search-input"
-              />
+              <Link to="/servicios">
+                Servicios
+                <svg className="chevron" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
+                </svg>
+              </Link>
+              
+              <div className={`dropdown-menu ${serviciosOpen ? 'show' : ''}`}>
+                <Link to="/servicios/web" className="dropdown-item">
+                  Páginas Web y Presencia Digital
+                </Link>
+                <Link to="/servicios/software" className="dropdown-item">
+                  Sistemas y Software a Medida
+                </Link>
+                <Link to="/servicios/automatizacion" className="dropdown-item">
+                  Automatización y Soluciones Internas
+                </Link>
+                <Link to="/servicios/marketing" className="dropdown-item">
+                  Diseño y Marketing Digital
+                </Link>
+              </div>
             </div>
+
+            <NavLink to="/portafolio" className={({ isActive }) => isActive ? 'active-link' : ''}>
+              Portafolio
+            </NavLink>
+            <NavLink to="/nosotros" className={({ isActive }) => isActive ? 'active-link' : ''}>
+              Nosotros
+            </NavLink>
+            <NavLink to="/contacto" className={({ isActive }) => isActive ? 'active-link' : ''}>
+              Contacto
+            </NavLink>
+          </nav>
+
+          {/* Header Actions */}
+          <div className="header-actions">
+            {/* Theme Toggle */}
+            <ThemeToggle />
+
+            {/* Social Icons */}
+            <div className="social-icons">
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zm0-2.163c-3.259 0-3.667.014-4.947.072-4.358.2-6.78 2.618-6.98 6.98-.059 1.281-.073 1.689-.073 4.948 0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98 1.281.058 1.689.072 4.948.072 3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98-1.281-.059-1.69-.073-4.949-.073zm0 5.838c-3.403 0-6.162 2.759-6.162 6.162s2.759 6.163 6.162 6.163 6.162-2.759 6.162-6.163c0-3.403-2.759-6.162-6.162-6.162zm0 10.162c-2.209 0-4-1.79-4-4 0-2.209 1.791-4 4-4s4 1.791 4 4c0 2.21-1.791 4-4 4zm6.406-11.845c-.796 0-1.441.645-1.441 1.44s.645 1.44 1.441 1.44c.795 0 1.439-.645 1.439-1.44s-.644-1.44-1.439-1.44z"/>
+                </svg>
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/>
+                </svg>
+              </a>
+              <a href="https://wa.me/1234567890" target="_blank" rel="noopener noreferrer">
+                <svg fill="currentColor" viewBox="0 0 24 24">
+                  <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+                </svg>
+              </a>
+            </div>
+
+            {/* Mobile Toggle */}
+            <button className="mobile-toggle" onClick={toggleMenu}>
+              <span className={`hamburger ${menuOpen ? 'open' : ''}`}></span>
+            </button>
           </div>
-
-          {/* Redes Sociales */}
-          <div className="social-icons">
-            <a href="https://instagram.com/imtpstudios" target="_blank" rel="noopener noreferrer" aria-label="Instagram">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <rect x="2" y="2" width="20" height="20" rx="5" ry="5"/>
-                <path d="M16 11.37A4 4 0 1 1 12.63 8 4 4 0 0 1 16 11.37z"/>
-                <line x1="17.5" y1="6.5" x2="17.51" y2="6.5"/>
-              </svg>
-            </a>
-            <a href="https://linkedin.com/company/imtpstudios" target="_blank" rel="noopener noreferrer" aria-label="LinkedIn">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
-                <rect x="2" y="9" width="4" height="12"/>
-                <circle cx="4" cy="4" r="2"/>
-              </svg>
-            </a>
-            <a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer" aria-label="WhatsApp">
-              <svg viewBox="0 0 24 24" fill="currentColor">
-                <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/>
-              </svg>
-            </a>
-          </div>
-
-          {/* User Login */}
-          <Link to="/admin" className="user-button" aria-label="Iniciar sesión">
-            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-              <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2"/>
-              <circle cx="12" cy="7" r="4"/>
-            </svg>
-          </Link>
-
-          {/* CTA Button */}
-          <Link to="/cotizar" className="cta-button">
-            Cotizar
-          </Link>
-
-          {/* Mobile Toggle */}
-          <button 
-            className="mobile-toggle" 
-            onClick={toggleMobile}
-            aria-label="Menú"
-          >
-            <span className={`hamburger ${mobileOpen ? 'open' : ''}`}></span>
-          </button>
         </div>
       </div>
 
-      {/* Mobile Nav */}
-      <nav className={`mobile-nav ${mobileOpen ? 'mobile-open' : ''}`}>
-        <NavLink to="/" onClick={closeMobile}>Inicio</NavLink>
-        <NavLink to="/soluciones" onClick={closeMobile}>Soluciones</NavLink>
-        {solucionesLinks.map(link => (
-          <NavLink 
-            key={link.path} 
-            to={link.path} 
-            onClick={closeMobile}
-            className="mobile-sublink"
-          >
-            {link.label}
-          </NavLink>
-        ))}
-        <NavLink to="/portafolio" onClick={closeMobile}>Portafolio</NavLink>
-        <NavLink to="/nosotros" onClick={closeMobile}>Nosotros</NavLink>
-        <NavLink to="/contacto" onClick={closeMobile}>Contacto</NavLink>
+      {/* Mobile Navigation */}
+      <nav className={`mobile-nav ${menuOpen ? 'mobile-open' : ''}`}>
+        <Link to="/" onClick={() => setMenuOpen(false)}>Inicio</Link>
+        <Link to="/servicios" onClick={() => setMenuOpen(false)}>Servicios</Link>
+        <Link to="/servicios/web" onClick={() => setMenuOpen(false)} className="mobile-sublink">
+          → Páginas Web
+        </Link>
+        <Link to="/servicios/software" onClick={() => setMenuOpen(false)} className="mobile-sublink">
+          → Software a Medida
+        </Link>
+        <Link to="/servicios/automatizacion" onClick={() => setMenuOpen(false)} className="mobile-sublink">
+          → Automatización
+        </Link>
+        <Link to="/servicios/marketing" onClick={() => setMenuOpen(false)} className="mobile-sublink">
+          → Marketing Digital
+        </Link>
+        <Link to="/portafolio" onClick={() => setMenuOpen(false)}>Portafolio</Link>
+        <Link to="/nosotros" onClick={() => setMenuOpen(false)}>Nosotros</Link>
+        <Link to="/contacto" onClick={() => setMenuOpen(false)}>Contacto</Link>
         
         <div className="mobile-social">
-          <a href="https://instagram.com/imtpstudios" target="_blank" rel="noopener noreferrer">Instagram</a>
-          <a href="https://linkedin.com/company/imtpstudios" target="_blank" rel="noopener noreferrer">LinkedIn</a>
-          <a href="https://wa.me/573000000000" target="_blank" rel="noopener noreferrer">WhatsApp</a>
+          <a href="https://instagram.com">Instagram</a>
+          <a href="https://linkedin.com">LinkedIn</a>
+          <a href="https://wa.me/1234567890">WhatsApp</a>
         </div>
-        
-        <Link to="/cotizar" onClick={closeMobile} className="mobile-cta">
-          Cotizar Proyecto
-        </Link>
       </nav>
     </header>
   )
