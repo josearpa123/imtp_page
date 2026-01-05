@@ -431,7 +431,7 @@ function ContactForm() {
                 type="text"
                 id="asunto"
                 name="asunto"
-                placeholder="Ej: Quiero una web para vender / Automatizar pedidos / Sistema interno..."
+                placeholder="Ej: Quiero una ..."
                 value={formData.asunto}
                 onChange={handleChange}
                 onFocus={() => setFocusedField("asunto")}
@@ -447,7 +447,7 @@ function ContactForm() {
               <textarea
                 id="mensaje"
                 name="mensaje"
-                placeholder="Describe tu situación en 3–6 líneas. Qué tienes hoy, qué quieres lograr, y para cuándo."
+                placeholder="Describe tu situación."
                 rows={6}
                 value={formData.mensaje}
                 onChange={handleChange}
