@@ -333,7 +333,7 @@
   gap: 0.5rem;
   padding: 0.75rem 1.5rem;
   background: white;
-  color: var(--color-gray-900);
+  color: #0f172a;
   border: none;
   border-radius: 8px;
   font-size: 0.85rem;
@@ -347,6 +347,8 @@
 .btn-ver-proyecto svg {
   width: 18px;
   height: 18px;
+  stroke: #0f172a;
+  transition: stroke 0.3s ease;
 }
 
 .proyecto-card:hover .btn-ver-proyecto {
@@ -356,6 +358,29 @@
 .btn-ver-proyecto:hover {
   background: var(--color-primary);
   color: white;
+}
+
+.btn-ver-proyecto:hover svg {
+  stroke: white;
+}
+
+/* Dark mode - Botón ver proyecto */
+[data-theme="dark"] .btn-ver-proyecto {
+  background: white;
+  color: #0f172a;
+}
+
+[data-theme="dark"] .btn-ver-proyecto svg {
+  stroke: #0f172a;
+}
+
+[data-theme="dark"] .btn-ver-proyecto:hover {
+  background: var(--color-primary);
+  color: white;
+}
+
+[data-theme="dark"] .btn-ver-proyecto:hover svg {
+  stroke: white;
 }
 
 .proyecto-info {
@@ -444,7 +469,12 @@
   font-size: 0.875rem;
   font-weight: 600;
   color: var(--color-primary);
-  transition: gap 0.3s ease;
+  transition: all 0.3s ease;
+}
+
+.ver-mas-link:hover {
+  color: var(--color-accent);
+  gap: 0.75rem;
 }
 
 .ver-mas-link svg {
@@ -455,6 +485,15 @@
 
 .proyecto-card:hover .ver-mas-link svg {
   transform: translateX(4px);
+}
+
+/* Dark mode - Ver más link */
+[data-theme="dark"] .ver-mas-link {
+  color: #60a5fa;
+}
+
+[data-theme="dark"] .ver-mas-link:hover {
+  color: #93c5fd;
 }
 
 /* ========== CARD PRÓXIMAMENTE ========== */
