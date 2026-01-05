@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import '../styles/HomePage.css'
 import LogoLoop from '../components/LogoLoop'
+import ProfileCard from '../components/ProfileCard'
 
 const BASE = import.meta.env.BASE_URL
 
@@ -114,7 +115,32 @@ const capacidades = [
   { label: 'Identidad digital', desc: 'Branding, diseño UI/UX, contenido' }
 ]
 
+const teamMembers = [
+  {
+    name: 'Jose Arias',
+    title: 'Backend Developer',
+    handle: 'josearias',
+    avatarUrl: '/profiles/jose-arias.png',
+    glowColor: 'rgba(139, 92, 246, 0.6)',
+    gradientFrom: '#7c3aed',
+    gradientTo: '#1e1b4b'
+  },
+  {
+    name: 'Frank Palma',
+    title: 'Frontend Developer',
+    handle: 'frankpalma',
+    avatarUrl: '/profiles/frank-palma.png',
+    glowColor: 'rgba(59, 130, 246, 0.6)',
+    gradientFrom: '#3b82f6',
+    gradientTo: '#0f172a'
+  }
+]
+
 function HomePage() {
+  const handleContactClick = () => {
+    window.location.href = '/contacto'
+  }
+
   return (
     <div className="home-page">
       {/* Hero */}
@@ -153,7 +179,7 @@ function HomePage() {
         </div>
       </section>
 
-      {/* LogoLoop (ANTES de “Qué resolvemos”) */}
+      {/* LogoLoop */}
       <section className="logoloop-section">
         <div className="container">
           <div className="logoloop-card">
@@ -161,7 +187,7 @@ function HomePage() {
               <span className="logoloop-tag">Tecnologías y enfoque</span>
               <h2 className="logoloop-title">Construimos con stack moderno, sin improvisar.</h2>
               <p className="logoloop-subtitle">
-                Esto no es para “sonar pro”. Es para que tu sistema sea mantenible, rápido y escalable.
+                Esto no es para "sonar pro". Es para que tu sistema sea mantenible, rápido y escalable.
               </p>
             </div>
 
@@ -180,6 +206,62 @@ function HomePage() {
                 ariaLabel="Tecnologías y capacidades"
               />
             </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Equipo - Team Section */}
+      <section className="team-section">
+        <div className="container">
+          <div className="section-header team-header">
+            <span className="section-tag">Quiénes somos</span>
+            <h2 className="section-title">
+              Potenciar marcas mediante<br />
+              <span className="text-gradient">tecnología real.</span>
+            </h2>
+          </div>
+
+          <div className="team-grid">
+            {teamMembers.map((m) => (
+              <ProfileCard
+                key={m.handle}
+                name={m.name}
+                title={m.title}
+                handle={m.handle}
+                status="Disponible"
+                contactText="Contactar"
+                avatarUrl={m.avatarUrl}
+                showUserInfo={true}
+                enableTilt={true}
+                enableMobileTilt={false}
+                behindGlowColor={m.glowColor}
+                behindGlowSize="55%"
+                innerGradient={`linear-gradient(145deg, ${m.gradientFrom}55 0%, ${m.gradientTo}55 100%)`}
+                onContactClick={() => handleContactClick(m.name)}
+              />
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* Contact CTA Section */}
+      <section className="contact-cta-section">
+        <div className="container">
+          <div className="contact-cta-card">
+            <span className="contact-cta-tag">
+              <span className="tag-dot"></span>
+              ¿LISTO PARA DARLE FORMA A TU PROYECTO?
+            </span>
+            <h2 className="contact-cta-title">
+              Tu idea, mi diseño... y algo<br />genial sucede.
+            </h2>
+            <a href="mailto:info@imtpstudios.com" className="contact-cta-email">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                <path d="M9 10l-5 5 5 5" />
+                <path d="M20 4v7a4 4 0 0 1-4 4H4" />
+              </svg>
+              info@imtpstudios.com
+            </a>
           </div>
         </div>
       </section>
@@ -272,7 +354,7 @@ function HomePage() {
                 <ul className="perfil-lista">
                   {perfil.items.map((item, i) => (
                     <li key={i}>
-                      <span className="perfil-check">{perfil.tipo === 'ideal' ? '✓' : '✕'}</span>
+                      <span className="perfil-check">{perfil.tipo === 'ideal' ? '✔' : '✕'}</span>
                       {item}
                     </li>
                   ))}

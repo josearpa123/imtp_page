@@ -15,8 +15,8 @@ const proyectosData = [
     imagenDetalle: '/portafolio/jabonesrocio.png',
     descripcionCorta: 'Plataforma integral de comercio electrónico para insumos de jabonería artesanal con más de 190 productos.',
     destacado: true,
-    año: '2024',
-    duracion: '3 meses',
+    año: '2025',
+    duracion: '5 semanas',
     problema: 'El negocio dependía completamente de catálogos informales en WhatsApp, generando confusión en pedidos, errores en inventario y pérdida de ventas por falta de organización.',
     solucion: 'Desarrollamos una plataforma web completa con catálogo dinámico, carrito inteligente con cálculo de peso, sistema de pedidos automatizado vía WhatsApp, panel administrativo para inventario y gestión de tickets.',
     resultados: [
@@ -46,7 +46,7 @@ const proyectosData = [
     descripcionCorta: 'Sistema interno para control de inventarios, alertas de stock y reportes automatizados.',
     destacado: false,
     año: '2025',
-    duracion: '15 Días',
+    duracion: '3 Semanas',
     problema: 'Control manual de inventarios en Excel generaba inconsistencias, pérdidas por productos vencidos y falta de visibilidad del stock real.',
     solucion: 'Sistema web con dashboard en tiempo real, alertas automáticas de stock bajo, control de lotes y fechas de vencimiento, reportes exportables y auditoría de movimientos.',
     resultados: [

@@ -182,7 +182,7 @@
   border-top: 1px solid var(--color-border);
 }
 
-/* ✅ Estilo “chips” para los SVG dentro del LogoLoop */
+/* chips del LogoLoop */
 .logoloop-section .logoloop__item {
   display: inline-flex;
   align-items: center;
@@ -204,7 +204,7 @@
   transition: filter 0.18s ease, opacity 0.18s ease;
 }
 
-/* ✅ CAMBIO ÚNICO: quitar hover azul (sin tocar nada más) */
+/* quitar hover azul */
 .logoloop-section .logoloop__item:hover {
   border-color: var(--color-border);
   box-shadow: none;
@@ -469,6 +469,7 @@
 @media (min-width: 1280px) {
   .familias-grid { grid-template-columns: repeat(4, 1fr); }
 }
+
 /* DARK: hacer los logos blancos (invertidos) */
 :root.dark .logoloop-section .logoloop__item img,
 html.dark .logoloop-section .logoloop__item img,
@@ -480,7 +481,7 @@ body[data-theme="dark"] .logoloop-section .logoloop__item img {
   filter: brightness(0) invert(1);
 }
 
-/* DARK: el chip no debe ser blanco puro, que sea sutil */
+/* DARK: el chip sutil */
 :root.dark .logoloop-section .logoloop__item,
 html.dark .logoloop-section .logoloop__item,
 body.dark .logoloop-section .logoloop__item,
@@ -491,9 +492,7 @@ body[data-theme="dark"] .logoloop-section .logoloop__item {
   border-color: rgba(255, 255, 255, 0.00);
 }
 
-/* ============================================
-   HERO – forzar alineación a la izquierda (desktop)
-   ============================================ */
+/* HERO – forzar alineación a la izquierda (desktop) */
 @media (min-width: 1024px) {
   .hero .container {
     display: flex;
@@ -503,5 +502,179 @@ body[data-theme="dark"] .logoloop-section .logoloop__item {
 
   .hero-content {
     margin-left: 0 !important;
+  }
+}
+
+/* ============================================
+   TEAM SECTION
+   ============================================ */
+.team-section {
+  padding: var(--spacing-3xl) 0;
+  background: #0a0a0a;
+}
+
+.team-header {
+  text-align: center;
+  margin-bottom: var(--spacing-2xl);
+}
+
+.team-header .section-title {
+  color: #ffffff;
+}
+
+.text-gradient {
+  background: linear-gradient(135deg, #60a5fa 0%, #a78bfa 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.team-grid {
+  display: flex;
+  justify-content: center;
+  gap: var(--spacing-2xl);
+  flex-wrap: wrap;
+}
+
+.team-grid .pc-card-wrapper {
+  flex: 0 0 auto;
+}
+
+/* Dark mode team section */
+[data-theme="dark"] .team-section {
+  background: #050505;
+}
+
+/* ============================================
+   CONTACT CTA SECTION
+   ============================================ */
+.contact-cta-section {
+  padding: var(--spacing-3xl) 0;
+  background: #0a0a0a;
+}
+
+.contact-cta-card {
+  max-width: 900px;
+  margin: 0 auto;
+  padding: var(--spacing-3xl) var(--spacing-2xl);
+  background: linear-gradient(135deg, #111111 0%, #0d0d0d 100%);
+  border-radius: 24px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.contact-cta-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.5rem 1rem;
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 50px;
+  font-size: 0.7rem;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: var(--spacing-xl);
+}
+
+.tag-dot {
+  width: 8px;
+  height: 8px;
+  background: #6366f1;
+  border-radius: 50%;
+  animation: pulse-dot 2s ease-in-out infinite;
+}
+
+@keyframes pulse-dot {
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.6; transform: scale(0.85); }
+}
+
+.contact-cta-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  color: #ffffff;
+  line-height: 1.1;
+  margin: 0 0 var(--spacing-xl);
+}
+
+.contact-cta-email {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.75rem;
+  font-size: 1.25rem;
+  font-weight: 500;
+  color: rgba(255, 255, 255, 0.85);
+  text-decoration: none;
+  padding: 0.75rem 0;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  transition: all 0.3s ease;
+}
+
+.contact-cta-email:hover {
+  color: #ffffff;
+  border-color: rgba(255, 255, 255, 0.5);
+}
+
+.contact-cta-email svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+}
+
+/* Dark mode contact cta */
+[data-theme="dark"] .contact-cta-section {
+  background: #030303;
+}
+
+[data-theme="dark"] .contact-cta-card {
+  background: linear-gradient(135deg, #0a0a0a 0%, #050505 100%);
+  border-color: rgba(255, 255, 255, 0.04);
+}
+
+/* responsive team & cta */
+@media (max-width: 768px) {
+  .team-section {
+    padding: var(--spacing-2xl) 0;
+  }
+
+  .team-grid {
+    gap: var(--spacing-xl);
+  }
+
+  .contact-cta-section {
+    padding: var(--spacing-2xl) var(--spacing-md);
+  }
+
+  .contact-cta-card {
+    padding: var(--spacing-2xl) var(--spacing-lg);
+  }
+
+  .contact-cta-email {
+    font-size: 1rem;
+  }
+}
+
+@media (max-width: 480px) {
+  .team-grid {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .contact-cta-card {
+    padding: var(--spacing-xl) var(--spacing-md);
+    border-radius: 16px;
+  }
+
+  .contact-cta-tag {
+    font-size: 0.6rem;
+    padding: 0.4rem 0.75rem;
+  }
+
+  .contact-cta-email {
+    font-size: 0.9rem;
+    flex-direction: column;
+    gap: 0.5rem;
   }
 }
