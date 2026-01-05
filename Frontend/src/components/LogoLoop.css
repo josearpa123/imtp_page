@@ -1,0 +1,112 @@
+/* ============================================
+   LogoLoop Component Styles — CLEAN VERSION
+   ============================================ */
+
+.logoloop {
+  position: relative;
+  overflow: hidden;
+  --logoloop-gap: 64px;
+  --logoloop-logoHeight: 84px;
+  --logoloop-fadeColorAuto: var(--color-bg, #ffffff);
+}
+
+/* Dark mode */
+[data-theme="dark"] .logoloop {
+  --logoloop-fadeColorAuto: var(--color-bg, #0f172a);
+}
+
+.logoloop__track {
+  display: flex;
+  width: max-content;
+  will-change: transform;
+  user-select: none;
+}
+
+.logoloop__list {
+  display: flex;
+  align-items: center;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.logoloop__item {
+  flex: 0 0 auto;
+  margin-right: var(--logoloop-gap);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* IMÁGENES */
+.logoloop__item img {
+  height: var(--logoloop-logoHeight);
+  width: auto;
+  display: block;
+  object-fit: contain;
+  opacity: 0.9;
+  filter: grayscale(1);
+  transition: opacity 0.3s ease, filter 0.3s ease;
+  pointer-events: none;
+}
+
+/* Hover MUY SUAVE (solo color, nada de pop) */
+.logoloop__item:hover img {
+  opacity: 1;
+  filter: grayscale(0);
+}
+
+/* LINKS — sin azul, sin outline */
+.logoloop__link {
+  display: inline-flex;
+  align-items: center;
+  text-decoration: none;
+  color: inherit;
+  outline: none;
+}
+
+.logoloop__link:focus,
+.logoloop__link:focus-visible {
+  outline: none;
+  box-shadow: none;
+}
+
+/* Fade edges */
+.logoloop--fade::before,
+.logoloop--fade::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: clamp(32px, 10%, 140px);
+  pointer-events: none;
+  z-index: 10;
+}
+
+.logoloop--fade::before {
+  left: 0;
+  background: linear-gradient(
+    to right,
+    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+.logoloop--fade::after {
+  right: 0;
+  background: linear-gradient(
+    to left,
+    var(--logoloop-fadeColor, var(--logoloop-fadeColorAuto)) 0%,
+    rgba(0, 0, 0, 0) 100%
+  );
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .logoloop__track {
+    transform: none !important;
+  }
+  .logoloop__item img {
+    transition: none !important;
+  }
+}
