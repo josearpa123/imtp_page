@@ -253,7 +253,7 @@ function HomePage() {
               ¿LISTO PARA DARLE FORMA A TU PROYECTO?
             </span>
             <h2 className="contact-cta-title">
-              Tu idea, mi diseño... y algo<br />genial sucede.
+              Tu idea, nuestro diseño... y algo<br />genial sucede.
             </h2>
             <a href="mailto:info@imtpstudios.com" className="contact-cta-email">
               <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">

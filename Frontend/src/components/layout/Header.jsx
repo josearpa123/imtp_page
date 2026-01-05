@@ -15,7 +15,7 @@ function Header() {
     <header className="header">
       <div className="container">
         <div className="header-inner">
-          {/* Logo - cambia según tema */}
+          {/* Logo */}
           <Link to="/" className="logo">
             <img 
               src={isDark ? "/assets/images/logo-color.png" : "/assets/images/logo.png"} 
@@ -75,6 +75,28 @@ function Header() {
             {/* Theme Toggle */}
             <ThemeToggle />
 
+            {/* Login Button con animación de carga */}
+            <Link 
+              to="/admin" 
+              className="login-button" 
+              title="Iniciar Sesión"
+              onClick={(e) => {
+                const button = e.currentTarget
+                button.classList.add('loading')
+              }}
+            >
+              <svg 
+                fill="none" 
+                viewBox="0 0 24 24" 
+                stroke="currentColor" 
+                strokeWidth={2}
+                className="login-icon"
+              >
+                <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+              </svg>
+              <span className="login-spinner"></span>
+            </Link>
+
             {/* Social Icons */}
             <div className="social-icons">
               <a href="https://www.instagram.com/imtpstudios/" target="_blank" rel="noopener noreferrer">
@@ -95,7 +117,7 @@ function Header() {
             </div>
 
             {/* Mobile Toggle */}
-            <button className="mobile-toggle" onClick={toggleMenu}>
+            <button className="mobile-toggle" onClick={toggleMenu} aria-label="Menú">
               <span className={`hamburger ${menuOpen ? 'open' : ''}`}></span>
             </button>
           </div>
@@ -125,8 +147,15 @@ function Header() {
         <div className="mobile-social">
           <a href="https://instagram.com">Instagram</a>
           <a href="https://linkedin.com">LinkedIn</a>
-          <a href="https://wa.me/1234567890">WhatsApp</a>
+          <a href="https://wa.me/+573207262477">WhatsApp</a>
         </div>
+
+        <Link to="/admin" onClick={() => setMenuOpen(false)} className="mobile-login-btn">
+          <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+            <path strokeLinecap="round" strokeLinejoin="round" d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+          </svg>
+          Iniciar Sesión
+        </Link>
       </nav>
     </header>
   )

@@ -66,11 +66,11 @@ function Footer() {
           <div className="footer-column">
             <h4 className="footer-title">Contacto</h4>
             <div className="footer-contact">
-              <a href="mailto:contacto@imtpstudios.com">
+              <a href="mailto:info@imtpstudios.com">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">
                   <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
                 </svg>
-                contacto@imtpstudios.com
+                info@imtpstudios.com
               </a>
               <a href="tel:+1234567890">
                 <svg fill="none" viewBox="0 0 24 24" stroke="currentColor">

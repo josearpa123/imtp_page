@@ -1,5 +1,5 @@
 /* ============================================
-   Header Styles
+   Header Styles - IMTP Studios
    ============================================ */
 
 .header {
@@ -27,12 +27,11 @@
 }
 
 .logo-image {
-  height: 96px;  /* Antes: 44px */
+  height: 96px;
   width: auto;
   object-fit: contain;
 }
 
-/* Fallback texto si no hay imagen */
 .logo-text {
   font-size: 1.5rem;
   font-weight: 700;
@@ -150,6 +149,30 @@
 .user-button svg {
   width: 20px;
   height: 20px;
+}
+
+/* Login Button */
+.login-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  color: var(--color-text-secondary);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-md);
+  transition: all var(--transition-fast);
+}
+
+.login-button svg {
+  width: 20px;
+  height: 20px;
+}
+
+.login-button:hover {
+  background: var(--color-bg-secondary);
+  color: var(--color-primary);
 }
 
 /* Search */
@@ -340,6 +363,32 @@
   border: none !important;
 }
 
+/* Mobile Login Button */
+.mobile-login-btn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  margin-top: var(--spacing-md);
+  padding: var(--spacing-md) !important;
+  font-size: 0.938rem;
+  font-weight: 600;
+  color: #ffffff !important;
+  background: var(--color-primary);
+  border-radius: var(--radius-md);
+  border: none !important;
+  transition: all 0.2s ease;
+}
+
+.mobile-login-btn svg {
+  width: 20px;
+  height: 20px;
+}
+
+.mobile-login-btn:hover {
+  background: var(--color-primary-dark);
+}
+
 /* Desktop breakpoint */
 @media (min-width: 1024px) {
   .desktop-nav {
@@ -361,4 +410,82 @@
   .mobile-nav {
     display: none;
   }
+}
+/* =========================
+   Login Button Animation
+   ========================= */
+.login-button {
+  position: relative;
+  overflow: hidden;
+}
+
+.login-icon {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-button:hover .login-icon {
+  transform: scale(1.1) translateY(-2px);
+}
+
+.login-button:active .login-icon {
+  transform: scale(0.95);
+}
+
+/* Loading State */
+.login-spinner {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease;
+}
+
+.login-spinner::before {
+  content: '';
+  width: 18px;
+  height: 18px;
+  border: 2px solid var(--color-border);
+  border-top-color: var(--color-primary);
+  border-radius: 50%;
+  animation: loginSpin 0.7s linear infinite;
+}
+
+@keyframes loginSpin {
+  to { transform: rotate(360deg); }
+}
+
+.login-button.loading .login-icon {
+  opacity: 0;
+  transform: scale(0.8);
+}
+
+.login-button.loading .login-spinner {
+  opacity: 1;
+}
+
+/* Pulse effect on click */
+.login-button::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: var(--radius-md);
+  background: var(--color-primary);
+  opacity: 0;
+  transform: scale(0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.login-button:active::after {
+  opacity: 0.2;
+  transform: scale(1);
+  transition: all 0s;
+}
+
+/* Dark mode spinner */
+[data-theme="dark"] .login-spinner::before {
+  border-color: rgba(255, 255, 255, 0.2);
+  border-top-color: var(--color-primary);
 }
