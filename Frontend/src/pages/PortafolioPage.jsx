@@ -28,8 +28,8 @@ const proyectosData = [
     tecnologias: ['React', 'PHP', 'MySQL', 'API REST', 'WhatsApp Business'],
     testimonio: {
       texto: 'Pasamos de perder pedidos por WhatsApp a tener todo organizado. Ahora sé exactamente qué tengo en inventario y los clientes pueden ver todo sin preguntarme.',
-      autor: 'Jenifer Salazar',
-      cargo: 'Fundadora, Jabones Rocío'
+      autor: 'Odair Solarte',
+      cargo: 'Fundador, Jabones Rocío'
     },
     linkExterno: 'https://jabonesrocio.com.co',
     urlPreview: 'https://jabonesrocio.com.co',
