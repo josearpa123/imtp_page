@@ -36,29 +36,32 @@ class AuthController extends Controller
         $token = $user->createToken('admin-panel', ['admin'])->plainTextToken;
 
         $user->forceFill(['last_login_at' => now()])->save();
-
         return response()->json([
             'token' => $token,
             'user' => [
                 'id' => $user->id,
-                'full_name' => $user->full_name,
                 'email' => $user->email,
-                'must_change_password' => (bool) $user->must_change_password,
-                'roles' => $user->roles()->pluck('slug')->values(),
+                'full_name' => $user->full_name,
+                'role_slug' => 'admin', // ✅ IMPORTANTE
             ],
         ]);
+
     }
+
 
     public function me(Request $request)
     {
-        $user = $request->user()->load('roles');
+        $user = $request->user();
+
+        // si quieres validar admin acá también:
+        $isAdmin = $user->roles()->where('slug', 'admin')->exists();
 
         return response()->json([
             'id' => $user->id,
-            'full_name' => $user->full_name,
             'email' => $user->email,
-            'must_change_password' => (bool) $user->must_change_password,
-            'roles' => $user->roles->pluck('slug')->values(),
+            'full_name' => $user->full_name,
+            'role_slug' => $isAdmin ? 'admin' : null,
+            'is_admin' => $isAdmin,
         ]);
     }
 

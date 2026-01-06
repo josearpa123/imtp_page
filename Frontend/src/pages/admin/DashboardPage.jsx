@@ -12,17 +12,69 @@ export default function DashboardPage() {
   const [sidebarCollapsed, setSidebarCollapsed] = useState(false)
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false)
 
-  useEffect(() => {
-    const isAuth = localStorage.getItem('imtp_admin')
-    if (!isAuth) {
-      navigate('/admin')
-    }
-  }, [navigate])
+    useEffect(() => {
+        const token = localStorage.getItem('imtp_token')
+        const userRaw = localStorage.getItem('imtp_user')
+        const user = userRaw ? JSON.parse(userRaw) : null
 
-  const handleLogout = () => {
-    localStorage.removeItem('imtp_admin')
-    navigate('/admin')
-  }
+        const isAdmin =
+            user?.role === 'admin' ||
+            user?.role_slug === 'admin' ||
+            user?.is_admin === true ||
+            (Array.isArray(user?.roles) && user.roles.some(r => r?.slug === 'admin' || r?.name === 'admin'))
+
+        if (!token || !user || !isAdmin) {
+            localStorage.removeItem('imtp_token')
+            localStorage.removeItem('imtp_user')
+            navigate('/admin')
+            return
+        }
+
+        // (Opcional pero recomendado) verificar token contra el backend
+        const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+        fetch(`${API_URL}/api/me`, {
+            headers: { Authorization: `Bearer ${token}` }
+        })
+            .then(async (res) => {
+                if (!res.ok) throw new Error('unauthorized')
+                const me = await res.json().catch(() => null)
+
+                const meIsAdmin =
+                    me?.role === 'admin' ||
+                    me?.role_slug === 'admin' ||
+                    me?.is_admin === true ||
+                    (Array.isArray(me?.roles) && me.roles.some(r => r?.slug === 'admin' || r?.name === 'admin'))
+
+                if (!meIsAdmin) throw new Error('not_admin')
+            })
+            .catch(() => {
+                localStorage.removeItem('imtp_token')
+                localStorage.removeItem('imtp_user')
+                navigate('/admin')
+            })
+    }, [navigate])
+
+
+    const handleLogout = async () => {
+        const token = localStorage.getItem('imtp_token')
+        const API_URL = import.meta.env.VITE_API_URL || 'http://127.0.0.1:8000'
+
+        try {
+            if (token) {
+                await fetch(`${API_URL}/api/auth/logout`, {
+                    method: 'POST',
+                    headers: { Authorization: `Bearer ${token}` }
+                })
+            }
+        } catch (_) {
+            // no pasa nada si falla
+        } finally {
+            localStorage.removeItem('imtp_token')
+            localStorage.removeItem('imtp_user')
+            navigate('/admin')
+        }
+    }
+
 
   const stats = {
     leadsHoy: 3,

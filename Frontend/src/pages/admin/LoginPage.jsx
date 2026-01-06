@@ -44,6 +44,18 @@ export default function LoginPage() {
                 setIsLoading(false)
                 return
             }
+            const user = data.user
+            const isAdmin =
+                user?.role === 'admin' ||
+                user?.role_slug === 'admin' ||
+                user?.is_admin === true ||
+                (Array.isArray(user?.roles) && user.roles.some(r => r?.slug === 'admin' || r?.name === 'admin'))
+
+            if (!isAdmin) {
+                setError('Acceso solo para administradores')
+                setIsLoading(false)
+                return
+            }
 
             localStorage.setItem('imtp_token', data.token)
             localStorage.setItem('imtp_user', JSON.stringify(data.user))
