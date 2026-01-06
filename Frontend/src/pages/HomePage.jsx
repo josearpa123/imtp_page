@@ -3,6 +3,9 @@ import '../styles/HomePage.css'
 import LogoLoop from '../components/LogoLoop'
 import ProfileCard from '../components/ProfileCard'
 
+// ✅ NUEVO: CardSwap
+import CardSwap, { Card } from '../components/CardSwap/CardSwap'
+
 const BASE = import.meta.env.BASE_URL
 
 const LOGOS = [
@@ -262,6 +265,336 @@ function HomePage() {
               </svg>
               info@imtpstudios.com
             </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ✅ NUEVO BLOQUE (debajo del correo): Diseño + Ingeniería + CardSwap */}
+      <section className="proof-section">
+        <div className="container">
+          <div className="proof-card">
+            <div className="proof-left">
+              <span className="proof-tag">DISEÑO + INGENIERÍA</span>
+
+              <h2 className="proof-title">
+                No se ve “bonito”.<br />
+                <span className="proof-muted">Se siente sólido.</span>
+              </h2>
+
+              <p className="proof-subtitle">
+                La experiencia importa: interfaces limpias, decisiones claras y desarrollo
+                con base técnica real. Esto es lo que te entregamos cuando construimos contigo.
+              </p>
+
+              <div className="proof-pills">
+                <span className="proof-pill">Confiabilidad</span>
+                <span className="proof-pill">Código mantenible</span>
+                <span className="proof-pill">UI/UX con intención</span>
+                <span className="proof-pill">Performance</span>
+              </div>
+            </div>
+
+            <div className="proof-right" aria-hidden="true">
+              <div style={{ height: '420px', position: 'relative' }}>
+                <CardSwap
+                  width={560}
+                  height={420}
+                  cardDistance={38}
+                  verticalDistance={30}
+                  delay={5200}
+                  pauseOnHover={true}
+                  easing="elastic"
+                >
+                  {/* 1) Confiabilidad */}
+                  <Card className="swapCard" style={{ '--swap-progress': '84%' }}>
+
+                    <div className="swapHeader">
+                      <div className="swapHeaderLeft">
+                        <div className="swapIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M12 2l7 4v6c0 5-3 9-7 10-4-1-7-5-7-10V6l7-4z" />
+                            <path d="M9 12l2 2 4-5" />
+                          </svg>
+                        </div>
+
+                        <span className="swapChip">
+                          <span className="swapDot"></span>
+                          Confiabilidad
+                        </span>
+                      </div>
+
+                      <div className="swapMeta">
+                      </div>
+                    </div>
+
+                    <h3 className="swapTitle">Tu sistema no puede fallar</h3>
+                    <p className="swapDesc">
+                      Diseño con control de errores, validaciones, trazabilidad y estructura técnica limpia.
+                    </p>
+
+                    <ul className="swapList">
+                      <li><span className="swapCheck">✓</span>Flujos consistentes y predecibles</li>
+                      <li><span className="swapCheck">✓</span>Métricas y logs para diagnóstico real</li>
+                      <li><span className="swapCheck">✓</span>Menos “parches”, más estabilidad</li>
+                    </ul>
+
+                    <div className="swapStats">
+                      <div className="swapStat">
+                        <div className="swapStatNum">99.9%</div>
+                        <div className="swapStatLabel">Uptime</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">-38%</div>
+                        <div className="swapStatLabel">Incidentes</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">&lt;200ms</div>
+                        <div className="swapStatLabel">Respuesta</div>
+                      </div>
+                    </div>
+
+                    <div className="swapProgressWrap">
+                      <div className="swapProgressTop">
+                        <span>Madurez</span>
+                        <span>84%</span>
+                      </div>
+                      <div className="swapBar">
+                        <div className="swapBarFill"></div>
+                      </div>
+                    </div>
+
+                    <div className="swapFooter">
+                      <div className="swapTech">
+                        <span className="swapTechTag">Validación</span>
+                        <span className="swapTechTag">Observabilidad</span>
+                        <span className="swapTechTag">Arquitectura</span>
+                      </div>
+
+                      <button className="swapBtn" type="button">
+                        Ver ejemplo →
+                      </button>
+                    </div>
+                  </Card>
+
+                  {/* 2) Programación */}
+                  <Card className="swapCard" style={{ '--swap-progress': '78%' }}>
+
+                    <div className="swapHeader">
+                      <div className="swapHeaderLeft">
+                        <div className="swapIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M8 9l3 3-3 3" />
+                            <path d="M13 15h3" />
+                            <rect x="3" y="4" width="18" height="16" rx="2" />
+                          </svg>
+                        </div>
+
+                        <span className="swapChip">
+                          <span className="swapDot"></span>
+                          Programación
+                        </span>
+                      </div>
+
+                      <div className="swapMeta">
+                      </div>
+                    </div>
+
+                    <h3 className="swapTitle">Código mantenible, sin deuda tóxica</h3>
+                    <p className="swapDesc">
+                      Componentes reutilizables, estructura clara y decisiones técnicas justificadas desde el inicio.
+                    </p>
+
+                    <ul className="swapList">
+                      <li><span className="swapCheck">✓</span>Arquitectura modular y escalable</li>
+                      <li><span className="swapCheck">✓</span>Buenas prácticas y consistencia</li>
+                      <li><span className="swapCheck">✓</span>Integración lista para backend</li>
+                    </ul>
+
+                    <div className="swapStats">
+                      <div className="swapStat">
+                        <div className="swapStatNum">+4x</div>
+                        <div className="swapStatLabel">Escala</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">-30%</div>
+                        <div className="swapStatLabel">Retrabajo</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">CI/CD</div>
+                        <div className="swapStatLabel">Listo</div>
+                      </div>
+                    </div>
+
+                    <div className="swapProgressWrap">
+                      <div className="swapProgressTop">
+                        <span>Madurez</span>
+                        <span>78%</span>
+                      </div>
+                      <div className="swapBar">
+                        <div className="swapBarFill"></div>
+                      </div>
+                    </div>
+
+                    <div className="swapFooter">
+                      <div className="swapTech">
+                        <span className="swapTechTag">React</span>
+                        <span className="swapTechTag">API REST</span>
+                        <span className="swapTechTag">Deploy</span>
+                      </div>
+
+                      <button className="swapBtn" type="button">
+                        Ver ejemplo →
+                      </button>
+                    </div>
+                  </Card>
+
+                  {/* 3) UI/UX */}
+                  <Card className="swapCard" style={{ '--swap-progress': '73%' }}>
+
+                    <div className="swapHeader">
+                      <div className="swapHeaderLeft">
+                        <div className="swapIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M4 6h16" />
+                            <path d="M4 12h10" />
+                            <path d="M4 18h16" />
+                            <path d="M18 10l2 2-4 4-2 0 0-2 4-4z" />
+                          </svg>
+                        </div>
+
+                        <span className="swapChip">
+                          <span className="swapDot"></span>
+                          UI/UX
+                        </span>
+                      </div>
+
+                      <div className="swapMeta">
+                      </div>
+                    </div>
+
+                    <h3 className="swapTitle">Interfaz que guía, no que confunde</h3>
+                    <p className="swapDesc">
+                      Jerarquía visual, microdecisiones y flows pensados para que el usuario llegue a la acción.
+                    </p>
+
+                    <ul className="swapList">
+                      <li><span className="swapCheck">✓</span>Diseño coherente y profesional</li>
+                      <li><span className="swapCheck">✓</span>Componentes y patrones consistentes</li>
+                      <li><span className="swapCheck">✓</span>Accesibilidad y legibilidad</li>
+                    </ul>
+
+                    <div className="swapStats">
+                      <div className="swapStat">
+                        <div className="swapStatNum">+22%</div>
+                        <div className="swapStatLabel">Conversión</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">-18%</div>
+                        <div className="swapStatLabel">Fricción</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">AA</div>
+                        <div className="swapStatLabel">Accesible</div>
+                      </div>
+                    </div>
+
+                    <div className="swapProgressWrap">
+                      <div className="swapProgressTop">
+                        <span>Madurez</span>
+                        <span>73%</span>
+                      </div>
+                      <div className="swapBar">
+                        <div className="swapBarFill"></div>
+                      </div>
+                    </div>
+
+                    <div className="swapFooter">
+                      <div className="swapTech">
+                        <span className="swapTechTag">UI System</span>
+                        <span className="swapTechTag">UX Flow</span>
+                        <span className="swapTechTag">Micro</span>
+                      </div>
+
+                      <button className="swapBtn" type="button">
+                        Ver ejemplo →
+                      </button>
+                    </div>
+                  </Card>
+
+                  {/* 4) Performance */}
+                  <Card className="swapCard" style={{ '--swap-progress': '69%' }}>
+
+                    <div className="swapHeader">
+                      <div className="swapHeaderLeft">
+                        <div className="swapIcon" aria-hidden="true">
+                          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                            <path d="M12 3a9 9 0 1 0 9 9" />
+                            <path d="M12 3v9l6 3" />
+                            <path d="M20 4l-4 4" />
+                          </svg>
+                        </div>
+
+                        <span className="swapChip">
+                          <span className="swapDot"></span>
+                          Performance
+                        </span>
+                      </div>
+
+                      <div className="swapMeta">
+                      </div>
+                    </div>
+
+                    <h3 className="swapTitle">Velocidad que se siente</h3>
+                    <p className="swapDesc">
+                      Cargas rápidas, layouts estables y decisiones para que el sitio responda sin “lag”.
+                    </p>
+
+                    <ul className="swapList">
+                      <li><span className="swapCheck">✓</span>Optimización de assets y carga</li>
+                      <li><span className="swapCheck">✓</span>Menos bloqueos, más fluidez</li>
+                      <li><span className="swapCheck">✓</span>Buen rendimiento móvil</li>
+                    </ul>
+
+                    <div className="swapStats">
+                      <div className="swapStat">
+                        <div className="swapStatNum">90+</div>
+                        <div className="swapStatLabel">Lighthouse</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">-35%</div>
+                        <div className="swapStatLabel">Carga</div>
+                      </div>
+                      <div className="swapStat">
+                        <div className="swapStatNum">CLS</div>
+                        <div className="swapStatLabel">Estable</div>
+                      </div>
+                    </div>
+
+                    <div className="swapProgressWrap">
+                      <div className="swapProgressTop">
+                        <span>Madurez</span>
+                        <span>69%</span>
+                      </div>
+                      <div className="swapBar">
+                        <div className="swapBarFill"></div>
+                      </div>
+                    </div>
+
+                    <div className="swapFooter">
+                      <div className="swapTech">
+                        <span className="swapTechTag">Optimización</span>
+                        <span className="swapTechTag">Core Web Vitals</span>
+                        <span className="swapTechTag">Mobile</span>
+                      </div>
+
+                      <button className="swapBtn" type="button">
+                        Ver ejemplo →
+                      </button>
+                    </div>
+                  </Card>
+                </CardSwap>
+              </div>
+            </div>
           </div>
         </div>
       </section>
