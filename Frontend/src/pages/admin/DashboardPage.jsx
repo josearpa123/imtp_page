@@ -3,7 +3,6 @@ import { useState, useEffect, useRef } from 'react'
 import { useNavigate } from 'react-router-dom'
 import { useTheme } from '../../hooks/useTheme'
 import '../../styles/DashboardPage.css'
-import '../../styles/DashboardModalFix.css'
 
 
 export default function DashboardPage() {
