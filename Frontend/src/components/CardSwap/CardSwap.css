@@ -1,0 +1,465 @@
+.card-swap-container {
+  position: absolute;
+  bottom: 0;
+  right: 0;
+  transform: translate(6%, 18%);
+  transform-origin: bottom right;
+  perspective: 900px;
+  overflow: visible;
+}
+
+/* =========================
+   Card base
+   ========================= */
+.card {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  border-radius: 16px;
+  border: 1px solid rgba(255, 255, 255, 0.14);
+
+  background: linear-gradient(135deg, rgba(12, 12, 12, 0.92) 0%, rgba(0, 0, 0, 0.88) 100%);
+  box-shadow: 0 24px 70px rgba(0, 0, 0, 0.55);
+
+  transform-style: preserve-3d;
+  will-change: transform;
+  backface-visibility: hidden;
+  -webkit-backface-visibility: hidden;
+
+  overflow: hidden;
+}
+
+/* Light mode: card clara */
+:root:not([data-theme="dark"]) .card {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: linear-gradient(135deg, rgba(255, 255, 255, 0.86) 0%, rgba(248, 250, 252, 0.76) 100%);
+  box-shadow: 0 18px 60px rgba(15, 23, 42, 0.14);
+}
+
+/* =========================
+   Layout interno para contenido
+   (aplica solo si usas className="swapCard")
+   ========================= */
+.swapCard {
+  padding: 18px 18px 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+/* brillo suave diagonal */
+.swapCard::before {
+  content: '';
+  position: absolute;
+  inset: -40% -30%;
+  background: radial-gradient(circle at 25% 25%, rgba(99, 102, 241, 0.22), transparent 55%);
+  transform: rotate(15deg);
+  pointer-events: none;
+  opacity: 0.55;
+}
+
+:root:not([data-theme="dark"]) .swapCard::before {
+  opacity: 0.35;
+}
+
+/* Hover sutil (NO toca transform, para no pelear con GSAP) */
+.swapCard:hover {
+  border-color: rgba(99, 102, 241, 0.30);
+}
+
+:root:not([data-theme="dark"]) .swapCard:hover {
+  border-color: rgba(37, 99, 235, 0.22);
+}
+
+/* =========================
+   Header
+   ========================= */
+.swapHeader {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 12px;
+  z-index: 1;
+}
+
+.swapHeaderLeft {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+
+.swapIcon {
+  width: 36px;
+  height: 36px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  backdrop-filter: blur(10px);
+}
+
+.swapIcon svg {
+  width: 18px;
+  height: 18px;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+:root:not([data-theme="dark"]) .swapIcon {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+}
+:root:not([data-theme="dark"]) .swapIcon svg {
+  color: rgba(15, 23, 42, 0.82);
+}
+
+.swapChip {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.74rem;
+  font-weight: 800;
+  letter-spacing: 0.04em;
+  padding: 8px 12px;
+  border-radius: 999px;
+
+  color: rgba(255, 255, 255, 0.82);
+  background: rgba(0, 0, 0, 0.34);
+  border: 1px solid rgba(255, 255, 255, 0.14);
+  backdrop-filter: blur(10px);
+  white-space: nowrap;
+}
+
+:root:not([data-theme="dark"]) .swapChip {
+  color: rgba(15, 23, 42, 0.72);
+  background: rgba(255, 255, 255, 0.65);
+  border-color: rgba(37, 99, 235, 0.14);
+}
+
+.swapDot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: #6366f1;
+  box-shadow: 0 0 0 4px rgba(99, 102, 241, 0.18);
+}
+
+.swapMeta {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 6px;
+  z-index: 1;
+}
+
+.swapStatus {
+  font-size: 0.72rem;
+  font-weight: 700;
+  padding: 6px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.78);
+}
+
+:root:not([data-theme="dark"]) .swapStatus {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+  color: rgba(15, 23, 42, 0.72);
+}
+
+.swapDate {
+  font-size: 0.72rem;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+:root:not([data-theme="dark"]) .swapDate {
+  color: rgba(15, 23, 42, 0.55);
+}
+
+/* =========================
+   Title & description
+   ========================= */
+.swapTitle {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  font-size: 1.05rem;
+  font-weight: 850;
+  color: rgba(255, 255, 255, 0.92);
+  letter-spacing: 0.2px;
+}
+
+:root:not([data-theme="dark"]) .swapTitle {
+  color: rgba(15, 23, 42, 0.90);
+}
+
+.swapDesc {
+  position: relative;
+  z-index: 1;
+  margin: -6px 0 0;
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: rgba(255, 255, 255, 0.72);
+}
+
+:root:not([data-theme="dark"]) .swapDesc {
+  color: rgba(15, 23, 42, 0.65);
+}
+
+/* =========================
+   Bullets
+   ========================= */
+.swapList {
+  position: relative;
+  z-index: 1;
+  margin: 0;
+  padding: 0;
+  list-style: none;
+
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.swapList li {
+  display: flex;
+  gap: 10px;
+  align-items: flex-start;
+  font-size: 0.86rem;
+  line-height: 1.45;
+  color: rgba(255, 255, 255, 0.70);
+}
+
+:root:not([data-theme="dark"]) .swapList li {
+  color: rgba(15, 23, 42, 0.62);
+}
+
+.swapCheck {
+  width: 18px;
+  height: 18px;
+  border-radius: 6px;
+  flex: 0 0 auto;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: rgba(99, 102, 241, 0.18);
+  border: 1px solid rgba(99, 102, 241, 0.28);
+  color: rgba(255, 255, 255, 0.9);
+}
+
+:root:not([data-theme="dark"]) .swapCheck {
+  background: rgba(37, 99, 235, 0.10);
+  border-color: rgba(37, 99, 235, 0.18);
+  color: rgba(15, 23, 42, 0.8);
+}
+
+/* =========================
+   Mini métricas
+   ========================= */
+.swapStats {
+  position: relative;
+  z-index: 1;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 10px;
+}
+
+.swapStat {
+  border-radius: 12px;
+  padding: 10px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.06);
+}
+
+:root:not([data-theme="dark"]) .swapStat {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.swapStatNum {
+  font-size: 0.95rem;
+  font-weight: 900;
+  color: rgba(255, 255, 255, 0.92);
+}
+
+:root:not([data-theme="dark"]) .swapStatNum {
+  color: rgba(15, 23, 42, 0.9);
+}
+
+.swapStatLabel {
+  margin-top: 4px;
+  font-size: 0.72rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+:root:not([data-theme="dark"]) .swapStatLabel {
+  color: rgba(15, 23, 42, 0.55);
+}
+
+/* =========================
+   Barra progreso (sutil)
+   ========================= */
+.swapProgressWrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  margin-top: -2px;
+}
+
+.swapProgressTop {
+  display: flex;
+  justify-content: space-between;
+  font-size: 0.74rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.62);
+}
+
+:root:not([data-theme="dark"]) .swapProgressTop {
+  color: rgba(15, 23, 42, 0.55);
+}
+
+.swapBar {
+  height: 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.06);
+  overflow: hidden;
+}
+
+:root:not([data-theme="dark"]) .swapBar {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+}
+
+.swapBarFill {
+  height: 100%;
+  width: var(--swap-progress, 70%);
+  border-radius: 999px;
+  background: linear-gradient(90deg, rgba(99, 102, 241, 0.85), rgba(37, 99, 235, 0.85));
+}
+
+/* =========================
+   Footer: tags + botón
+   ========================= */
+.swapFooter {
+  position: relative;
+  z-index: 1;
+  margin-top: auto;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+.swapTech {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.swapTechTag {
+  font-size: 0.72rem;
+  font-weight: 800;
+  padding: 7px 10px;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 255, 255, 0.10);
+  background: rgba(255, 255, 255, 0.06);
+  color: rgba(255, 255, 255, 0.72);
+  white-space: nowrap;
+}
+
+:root:not([data-theme="dark"]) .swapTechTag {
+  border-color: rgba(37, 99, 235, 0.14);
+  background: rgba(255, 255, 255, 0.55);
+  color: rgba(15, 23, 42, 0.65);
+}
+
+.swapBtn {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 9px 12px;
+  border-radius: 12px;
+
+  font-size: 0.78rem;
+  font-weight: 900;
+  letter-spacing: 0.02em;
+
+  border: 1px solid rgba(99, 102, 241, 0.32);
+  background: rgba(99, 102, 241, 0.18);
+  color: rgba(255, 255, 255, 0.90);
+
+  cursor: pointer;
+  user-select: none;
+  transition: opacity 0.2s ease, border-color 0.2s ease;
+}
+
+.swapBtn:hover {
+  opacity: 0.92;
+  border-color: rgba(99, 102, 241, 0.48);
+}
+
+:root:not([data-theme="dark"]) .swapBtn {
+  background: rgba(37, 99, 235, 0.10);
+  border-color: rgba(37, 99, 235, 0.18);
+  color: rgba(15, 23, 42, 0.75);
+}
+
+/* =========================
+   Badge lateral (Nuevo/Core/Crítico)
+   ========================= */
+.swapBadge {
+  position: absolute;
+  top: 14px;
+  right: -44px;
+  transform: rotate(35deg);
+  padding: 7px 54px;
+  font-size: 0.72rem;
+  font-weight: 950;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+
+  background: rgba(99, 102, 241, 0.22);
+  border: 1px solid rgba(99, 102, 241, 0.34);
+  color: rgba(255, 255, 255, 0.9);
+
+  z-index: 2;
+}
+
+:root:not([data-theme="dark"]) .swapBadge {
+  background: rgba(37, 99, 235, 0.10);
+  border-color: rgba(37, 99, 235, 0.18);
+  color: rgba(15, 23, 42, 0.78);
+}
+
+/* Variantes del badge (solo cambian opacidad/borde) */
+.swapBadge.isCritical {
+  background: rgba(239, 68, 68, 0.18);
+  border-color: rgba(239, 68, 68, 0.28);
+}
+.swapBadge.isCore {
+  background: rgba(16, 185, 129, 0.16);
+  border-color: rgba(16, 185, 129, 0.26);
+}
+
+/* =========================
+   Responsive
+   ========================= */
+@media (max-width: 768px) {
+  .card-swap-container { transform: scale(0.78) translate(18%, 22%); }
+}
+
+@media (max-width: 480px) {
+  .card-swap-container { transform: scale(0.6) translate(20%, 26%); }
+}
