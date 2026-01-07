@@ -11,8 +11,8 @@ const proyectosData = [
     cliente: 'Jabones Rocío',
     categoria: 'web',
     categoriaLabel: 'Plataforma E-commerce',
-    imagen: '/portafolio/portada-jabonesrocio.png',
-    imagenDetalle: '/portafolio/jabonesrocio.png',
+    imagen: '/portafolio-fotos/portada-jabonesrocio.png',
+    imagenDetalle: '/portafolio-fotos/jabonesrocio.png',
     descripcionCorta: 'Plataforma integral de comercio electrónico para insumos de jabonería artesanal con más de 190 productos.',
     destacado: true,
     año: '2025',
@@ -41,8 +41,8 @@ const proyectosData = [
     cliente: 'Distribuidora Regional',
     categoria: 'software',
     categoriaLabel: 'Software a Medida',
-    imagen: '/portafolio/inventarios.png',
-    imagenDetalle: '/portafolio/inventarios-detalle.png',
+    imagen: '/portafolio-fotos/inventarios.png',
+    imagenDetalle: '/portafolio-fotos/inventarios-detalle.png',
     descripcionCorta: 'Sistema interno para control de inventarios, alertas de stock y reportes automatizados.',
     destacado: false,
     año: '2025',
@@ -163,7 +163,7 @@ function ProyectoCard({ proyecto, onVerDetalle, index }) {
           src={proyecto.imagen} 
           alt={proyecto.nombre}
           onError={(e) => {
-            e.target.src = '/portafolio/placeholder.png';
+            e.target.src = '/portafolio-fotos/placeholder.png';
           }}
         />
         <div className="proyecto-imagen-overlay">
