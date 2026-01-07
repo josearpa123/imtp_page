@@ -160,23 +160,24 @@ function HomePage() {
               diseñamos una solución a medida y la construimos con código
               que puedes mantener y escalar.
             </p>
+
+            {/* ✅ BOTONES: misma altura/tamaño + tipografía mejor */}
             <div className="hero-ctas">
-              <Link to="/cotizar" className="btn-primary">
-                Cuéntanos tu proyecto
+              <Link to="/cotizar" className="btn-primary hero-btn">
+                Cotizar proyecto
                 <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
                   <path d="M5 12h14M12 5l7 7-7 7" />
                 </svg>
               </Link>
-              <Link to="/soluciones" className="btn-secondary">
-                Ver cómo trabajamos
+
+              <Link to="/servicios" className="btn-secondary hero-btn">
+                Ver servicios
               </Link>
             </div>
           </div>
 
           <div className="hero-visual">
             <div className="hero-badge">
-              <span className="badge-icon">⚡</span>
-              <span className="badge-text">Soluciones que funcionan</span>
             </div>
           </div>
         </div>
@@ -307,7 +308,6 @@ function HomePage() {
                 >
                   {/* 1) Confiabilidad */}
                   <Card className="swapCard" style={{ '--swap-progress': '84%' }}>
-
                     <div className="swapHeader">
                       <div className="swapHeaderLeft">
                         <div className="swapIcon" aria-hidden="true">
@@ -323,8 +323,7 @@ function HomePage() {
                         </span>
                       </div>
 
-                      <div className="swapMeta">
-                      </div>
+                      <div className="swapMeta"></div>
                     </div>
 
                     <h3 className="swapTitle">Tu sistema no puede fallar</h3>
@@ -378,7 +377,6 @@ function HomePage() {
 
                   {/* 2) Programación */}
                   <Card className="swapCard" style={{ '--swap-progress': '78%' }}>
-
                     <div className="swapHeader">
                       <div className="swapHeaderLeft">
                         <div className="swapIcon" aria-hidden="true">
@@ -395,8 +393,7 @@ function HomePage() {
                         </span>
                       </div>
 
-                      <div className="swapMeta">
-                      </div>
+                      <div className="swapMeta"></div>
                     </div>
 
                     <h3 className="swapTitle">Código mantenible, sin deuda tóxica</h3>
@@ -450,7 +447,6 @@ function HomePage() {
 
                   {/* 3) UI/UX */}
                   <Card className="swapCard" style={{ '--swap-progress': '73%' }}>
-
                     <div className="swapHeader">
                       <div className="swapHeaderLeft">
                         <div className="swapIcon" aria-hidden="true">
@@ -468,8 +464,7 @@ function HomePage() {
                         </span>
                       </div>
 
-                      <div className="swapMeta">
-                      </div>
+                      <div className="swapMeta"></div>
                     </div>
 
                     <h3 className="swapTitle">Interfaz que guía, no que confunde</h3>
@@ -523,7 +518,6 @@ function HomePage() {
 
                   {/* 4) Performance */}
                   <Card className="swapCard" style={{ '--swap-progress': '69%' }}>
-
                     <div className="swapHeader">
                       <div className="swapHeaderLeft">
                         <div className="swapIcon" aria-hidden="true">
@@ -540,8 +534,7 @@ function HomePage() {
                         </span>
                       </div>
 
-                      <div className="swapMeta">
-                      </div>
+                      <div className="swapMeta"></div>
                     </div>
 
                     <h3 className="swapTitle">Velocidad que se siente</h3>
