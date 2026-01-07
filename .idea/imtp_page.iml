@@ -83,8 +83,6 @@
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/sebastian/object-reflector" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/sebastian/recursion-context" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/sebastian/type" />
-      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/sebastian/version" />
-      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/staabm/side-effects-detector" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/clock" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/console" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/css-selector" />
@@ -115,11 +113,10 @@
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/translation-contracts" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/uid" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/var-dumper" />
-      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/yaml" />
-      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/theseer/tokenizer" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/tijsverkoyen/css-to-inline-styles" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/voku/portable-ascii" />
+      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/laravel/sanctum" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />
