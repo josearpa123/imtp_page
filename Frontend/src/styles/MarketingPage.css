@@ -1,0 +1,457 @@
+/* src/styles/MarketingPage.css */
+
+.mkt-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ========================================
+   HERO
+======================================== */
+.mkt-hero {
+  padding: 140px 0 80px;
+  background: var(--color-bg);
+}
+
+.mkt-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 40px;
+  transition: color 0.2s ease;
+}
+
+.mkt-back:hover {
+  color: var(--color-primary);
+}
+
+.mkt-hero-content {
+  max-width: 700px;
+}
+
+.mkt-hero-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #ec4899;
+  margin-bottom: 20px;
+}
+
+.mkt-hero-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.mkt-hero-accent {
+  color: #ec4899;
+}
+
+.mkt-hero-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+}
+
+/* ========================================
+   STATS
+======================================== */
+.mkt-stats {
+  padding: 40px 0;
+  background: var(--color-bg-secondary);
+  border-top: 1px solid var(--color-border);
+  border-bottom: 1px solid var(--color-border);
+}
+
+.mkt-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.mkt-stats .stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.mkt-stats .stat-number {
+  font-size: 2rem;
+}
+
+.mkt-stats .stat-label {
+  font-size: 0.9rem;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   SERVICIOS
+======================================== */
+.mkt-servicios {
+  padding: 100px 0;
+}
+
+.mkt-servicios-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mkt-servicios-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.mkt-servicios-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+.mkt-servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Card de Servicio */
+.servicio-card {
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 20px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.servicio-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.12);
+}
+
+[data-theme="dark"] .servicio-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+.servicio-visual {
+  position: relative;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.servicio-icono {
+  font-size: 3rem;
+}
+
+.servicio-content {
+  padding: 28px;
+}
+
+.servicio-titulo {
+  font-size: 1.35rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.01em;
+}
+
+.servicio-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 20px;
+}
+
+.servicio-incluye {
+  padding: 16px;
+  background: var(--color-bg-secondary);
+  border-radius: 12px;
+  margin-bottom: 20px;
+}
+
+.incluye-label {
+  display: block;
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--color-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.1em;
+  margin-bottom: 12px;
+}
+
+.servicio-incluye ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.servicio-incluye li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.servicio-incluye svg {
+  flex-shrink: 0;
+  stroke: #10b981;
+}
+
+.servicio-cta {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: var(--color-primary);
+  transition: gap 0.2s ease;
+}
+
+.servicio-cta:hover {
+  gap: 12px;
+}
+
+/* ========================================
+   PROCESO
+======================================== */
+.mkt-proceso {
+  padding: 100px 0;
+  background: var(--color-bg-secondary);
+}
+
+.mkt-proceso-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.mkt-proceso-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.mkt-proceso-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+.mkt-proceso-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.mkt-proceso .proceso-item {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.mkt-proceso .proceso-numero {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #ec4899;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+
+.mkt-proceso .proceso-titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.mkt-proceso .proceso-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   CTA
+======================================== */
+.mkt-cta {
+  padding: 120px 0;
+  background: linear-gradient(135deg, #ec4899 0%, #db2777 100%);
+}
+
+.mkt-cta-content {
+  text-align: center;
+  color: white;
+}
+
+.mkt-cta-content h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.mkt-cta-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.mkt-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 40px;
+  background: white;
+  color: #db2777;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.mkt-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 1024px) {
+  .mkt-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 24px;
+  }
+
+  .mkt-servicios-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .mkt-proceso-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+}
+
+@media (max-width: 768px) {
+  .mkt-hero {
+    padding: 120px 0 60px;
+  }
+
+  .mkt-hero-title {
+    font-size: 2rem;
+  }
+
+  .mkt-stats {
+    padding: 32px 0;
+  }
+
+  .mkt-stats-grid {
+    grid-template-columns: repeat(4, 1fr);
+    gap: 16px;
+  }
+
+  .mkt-stats .stat-number {
+    font-size: 1.5rem;
+  }
+
+  .mkt-stats .stat-label {
+    font-size: 0.7rem;
+  }
+
+  .mkt-servicios {
+    padding: 60px 0;
+  }
+
+  .servicio-incluye ul {
+    grid-template-columns: 1fr;
+  }
+
+  .mkt-proceso {
+    padding: 60px 0;
+  }
+
+  .mkt-proceso-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .mkt-proceso .proceso-item {
+    padding: 24px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    text-align: left;
+    align-items: center;
+  }
+
+  .mkt-proceso .proceso-numero {
+    font-size: 2rem;
+    margin-bottom: 0;
+    grid-row: span 2;
+  }
+
+  .mkt-proceso .proceso-titulo {
+    margin-bottom: 0;
+    align-self: end;
+  }
+
+  .mkt-proceso .proceso-desc {
+    grid-column: 2;
+  }
+
+  .mkt-cta {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .mkt-hero {
+    padding: 100px 0 40px;
+  }
+
+  .mkt-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .mkt-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .servicio-visual {
+    height: 100px;
+  }
+
+  .servicio-icono {
+    font-size: 2.5rem;
+  }
+
+  .servicio-content {
+    padding: 20px;
+  }
+
+  .servicio-titulo {
+    font-size: 1.2rem;
+  }
+}

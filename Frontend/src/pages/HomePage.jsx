@@ -3,6 +3,7 @@ import '../styles/HomePage.css'
 import LogoLoop from '../components/LogoLoop'
 import ProfileCard from '../components/ProfileCard'
 
+
 // ✅ NUEVO: CardSwap
 import CardSwap, { Card } from '../components/CardSwap/CardSwap'
 

@@ -1,0 +1,474 @@
+/* src/styles/AcademicoPage.css */
+
+.acad-page {
+  min-height: 100vh;
+  background: var(--color-bg);
+}
+
+/* ========================================
+   HERO
+======================================== */
+.acad-hero {
+  padding: 140px 0 60px;
+  background: var(--color-bg);
+}
+
+.acad-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: var(--color-text-muted);
+  margin-bottom: 40px;
+  transition: color 0.2s ease;
+}
+
+.acad-back:hover {
+  color: var(--color-primary);
+}
+
+.acad-hero-content {
+  max-width: 700px;
+}
+
+.acad-hero-label {
+  display: inline-block;
+  font-size: 0.8rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: #4A90E2;
+  margin-bottom: 20px;
+}
+
+.acad-hero-title {
+  font-size: clamp(2.25rem, 4.5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.1;
+  color: var(--color-text);
+  margin-bottom: 20px;
+  letter-spacing: -0.03em;
+}
+
+.acad-hero-accent {
+  color: #4A90E2;
+}
+
+.acad-hero-text {
+  font-size: 1.15rem;
+  line-height: 1.7;
+  color: var(--color-text-secondary);
+  max-width: 540px;
+}
+
+/* ========================================
+   DISCLAIMER
+======================================== */
+.acad-disclaimer {
+  padding: 0 0 60px;
+}
+
+.disclaimer-box {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+  padding: 20px 24px;
+  background: rgba(74, 144, 226, 0.1);
+  border: 1px solid rgba(74, 144, 226, 0.2);
+  border-radius: 12px;
+  max-width: 700px;
+}
+
+.disclaimer-box svg {
+  flex-shrink: 0;
+  color: #4A90E2;
+  margin-top: 2px;
+}
+
+.disclaimer-content {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+.disclaimer-content strong {
+  color: var(--color-text);
+}
+
+/* ========================================
+   SERVICIOS
+======================================== */
+.acad-servicios {
+  padding: 60px 0 100px;
+}
+
+.acad-servicios-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.acad-servicios-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+  letter-spacing: -0.02em;
+}
+
+.acad-servicios-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+.acad-servicios-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+}
+
+/* Card Académica */
+.acad-card {
+  display: flex;
+  gap: 24px;
+  padding: 28px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+  transition: all 0.3s ease;
+}
+
+.acad-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.1);
+  border-color: rgba(74, 144, 226, 0.3);
+}
+
+[data-theme="dark"] .acad-card:hover {
+  box-shadow: 0 20px 40px -12px rgba(0, 0, 0, 0.4);
+}
+
+.acad-card-icon {
+  width: 60px;
+  height: 60px;
+  flex-shrink: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+  border-radius: 14px;
+  font-size: 1.75rem;
+}
+
+.acad-card-content {
+  flex: 1;
+}
+
+.acad-card-titulo {
+  font-size: 1.25rem;
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 8px;
+}
+
+.acad-card-desc {
+  font-size: 0.95rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+  margin-bottom: 16px;
+}
+
+.acad-card-detalles {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+}
+
+.acad-card-detalles li {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.85rem;
+  color: var(--color-text);
+}
+
+.acad-card-detalles svg {
+  flex-shrink: 0;
+  stroke: #4A90E2;
+}
+
+/* ========================================
+   PROCESO
+======================================== */
+.acad-proceso {
+  padding: 100px 0;
+  background: var(--color-bg-secondary);
+}
+
+.acad-proceso-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.acad-proceso-header h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.acad-proceso-header p {
+  font-size: 1.1rem;
+  color: var(--color-text-secondary);
+}
+
+.acad-proceso-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+}
+
+.acad-proceso .proceso-item {
+  text-align: center;
+  padding: 32px 24px;
+  background: var(--color-bg);
+  border: 1px solid var(--color-border);
+  border-radius: 16px;
+}
+
+.acad-proceso .proceso-numero {
+  display: block;
+  font-size: 2.5rem;
+  font-weight: 800;
+  color: #4A90E2;
+  margin-bottom: 16px;
+  letter-spacing: -0.03em;
+}
+
+.acad-proceso .proceso-titulo {
+  font-size: 1.1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.acad-proceso .proceso-desc {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-muted);
+}
+
+/* ========================================
+   FAQ
+======================================== */
+.acad-faq {
+  padding: 100px 0;
+}
+
+.acad-faq-header {
+  text-align: center;
+  margin-bottom: 48px;
+}
+
+.acad-faq-header h2 {
+  font-size: clamp(1.5rem, 3vw, 2rem);
+  font-weight: 700;
+  color: var(--color-text);
+}
+
+.acad-faq-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px;
+  max-width: 900px;
+  margin: 0 auto;
+}
+
+.faq-item {
+  padding: 24px;
+  background: var(--color-bg-secondary);
+  border: 1px solid var(--color-border);
+  border-radius: 12px;
+}
+
+.faq-item h4 {
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--color-text);
+  margin-bottom: 12px;
+}
+
+.faq-item p {
+  font-size: 0.9rem;
+  line-height: 1.6;
+  color: var(--color-text-secondary);
+}
+
+/* ========================================
+   CTA
+======================================== */
+.acad-cta {
+  padding: 100px 0;
+  background: linear-gradient(135deg, #4A90E2 0%, #357ABD 100%);
+}
+
+.acad-cta-content {
+  text-align: center;
+  color: white;
+}
+
+.acad-cta-content h2 {
+  font-size: clamp(1.75rem, 3vw, 2.25rem);
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+
+.acad-cta-content p {
+  font-size: 1.1rem;
+  opacity: 0.9;
+  margin-bottom: 32px;
+  max-width: 480px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.acad-cta-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 16px 40px;
+  background: white;
+  color: #357ABD;
+  border-radius: 10px;
+  font-size: 1rem;
+  font-weight: 600;
+  transition: all 0.2s ease;
+}
+
+.acad-cta-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.2);
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 1024px) {
+  .acad-servicios-grid {
+    grid-template-columns: 1fr;
+    max-width: 600px;
+    margin: 0 auto;
+  }
+
+  .acad-proceso-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 20px;
+  }
+
+  .acad-faq-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 768px) {
+  .acad-hero {
+    padding: 120px 0 40px;
+  }
+
+  .acad-hero-title {
+    font-size: 2rem;
+  }
+
+  .disclaimer-box {
+    flex-direction: column;
+    gap: 12px;
+  }
+
+  .acad-servicios {
+    padding: 40px 0 60px;
+  }
+
+  .acad-card {
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  .acad-card-icon {
+    width: 50px;
+    height: 50px;
+    font-size: 1.5rem;
+  }
+
+  .acad-card-detalles {
+    grid-template-columns: 1fr;
+  }
+
+  .acad-proceso {
+    padding: 60px 0;
+  }
+
+  .acad-proceso-grid {
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .acad-proceso .proceso-item {
+    padding: 24px 20px;
+    display: grid;
+    grid-template-columns: auto 1fr;
+    gap: 16px;
+    text-align: left;
+    align-items: center;
+  }
+
+  .acad-proceso .proceso-numero {
+    font-size: 2rem;
+    margin-bottom: 0;
+    grid-row: span 2;
+  }
+
+  .acad-proceso .proceso-titulo {
+    margin-bottom: 0;
+    align-self: end;
+  }
+
+  .acad-proceso .proceso-desc {
+    grid-column: 2;
+  }
+
+  .acad-faq {
+    padding: 60px 0;
+  }
+
+  .acad-cta {
+    padding: 80px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .acad-hero {
+    padding: 100px 0 30px;
+  }
+
+  .acad-hero-title {
+    font-size: 1.75rem;
+  }
+
+  .acad-card {
+    padding: 20px;
+  }
+
+  .acad-card-titulo {
+    font-size: 1.1rem;
+  }
+
+  .faq-item {
+    padding: 20px;
+  }
+
+  .faq-item h4 {
+    font-size: 0.95rem;
+  }
+}

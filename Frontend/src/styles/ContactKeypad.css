@@ -1,0 +1,439 @@
+/* ====== Wrapper (scoped) ====== */
+.cc-section {
+  width: 100%;
+  padding: 90px 0;
+  position: relative;
+}
+
+/* grid vibe solo en este bloque (no te rompe el resto del sitio) */
+.cc-section::before {
+  --size: 45px;
+  --line: rgba(255, 255, 255, 0.08);
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(90deg, var(--line) 1px, transparent 1px var(--size))
+      calc(var(--size) * 0.36) 50% / var(--size) var(--size),
+    linear-gradient(var(--line) 1px, transparent 1px var(--size))
+      0% calc(var(--size) * 0.32) / var(--size) var(--size);
+  mask: linear-gradient(-20deg, transparent 35%, #000 85%);
+  pointer-events: none;
+  z-index: 0;
+}
+
+.cc-card {
+  width: min(1100px, calc(100% - 32px));
+  margin: 0 auto;
+  position: relative;
+  z-index: 1;
+
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: 28px;
+
+  border-radius: 22px;
+  overflow: hidden;
+
+  background: radial-gradient(120% 140% at 20% 20%, rgba(255,255,255,0.08) 0%, rgba(0,0,0,0) 55%),
+              linear-gradient(135deg, rgba(15, 15, 20, 0.92), rgba(20, 12, 28, 0.92));
+  box-shadow:
+    0 24px 60px rgba(0,0,0,0.45),
+    inset 0 1px 0 rgba(255,255,255,0.08);
+  border: 1px solid rgba(255,255,255,0.08);
+}
+
+.cc-left {
+  padding: 38px 34px;
+  color: rgba(255,255,255,0.92);
+}
+
+.cc-title {
+  margin: 0 0 10px 0;
+  font-size: clamp(28px, 3.2vw, 42px);
+  letter-spacing: -0.02em;
+}
+
+.cc-sub {
+  margin: 0 0 22px 0;
+  opacity: 0.8;
+  line-height: 1.5;
+  max-width: 52ch;
+}
+
+.cc-actions {
+  display: grid;
+  gap: 14px;
+  margin-bottom: 18px;
+}
+
+.cc-mail {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  width: fit-content;
+  padding: 10px 14px;
+  border-radius: 12px;
+
+  color: rgba(255,255,255,0.95);
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.06);
+  box-shadow: inset 0 1px 0 rgba(255,255,255,0.08);
+}
+
+.cc-mail:hover {
+  background: rgba(255,255,255,0.09);
+}
+
+.cc-mail-ico {
+  opacity: 0.9;
+}
+
+.cc-social {
+  display: flex;
+  gap: 10px;
+}
+
+.cc-social-btn {
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  display: grid;
+  place-items: center;
+
+  color: rgba(255,255,255,0.9);
+  text-decoration: none;
+
+  border: 1px solid rgba(255,255,255,0.12);
+  background: rgba(255,255,255,0.05);
+}
+
+.cc-social-btn:hover {
+  background: rgba(255,255,255,0.09);
+}
+
+.cc-form {
+  display: flex;
+  gap: 10px;
+  margin-top: 18px;
+  max-width: 520px;
+}
+
+.cc-form input {
+  flex: 1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.14);
+  background: rgba(0,0,0,0.25);
+  color: rgba(255,255,255,0.95);
+  outline: none;
+}
+
+.cc-form input::placeholder {
+  color: rgba(255,255,255,0.55);
+}
+
+.cc-form input:focus {
+  border-color: rgba(255,255,255,0.28);
+}
+
+.cc-form button {
+  padding: 12px 16px;
+  border-radius: 12px;
+  border: 1px solid rgba(255,255,255,0.16);
+  background: rgba(255,255,255,0.10);
+  color: rgba(255,255,255,0.95);
+  cursor: pointer;
+}
+
+.cc-form button:hover {
+  background: rgba(255,255,255,0.14);
+}
+
+.cc-toggles {
+  margin-top: 14px;
+  display: flex;
+  gap: 14px;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.cc-toggle {
+  display: inline-flex;
+  gap: 8px;
+  align-items: center;
+  opacity: 0.9;
+  user-select: none;
+}
+
+.cc-hint {
+  opacity: 0.7;
+  font-size: 0.95rem;
+}
+
+/* ====== Right side ====== */
+.cc-right {
+  display: grid;
+  place-items: center;
+  padding: 24px;
+}
+
+/* ====== KEYPAD ====== */
+.keypad {
+  position: relative;
+  aspect-ratio: 400 / 310;
+  display: flex;
+  place-items: center;
+  width: clamp(280px, 35vw, 420px);
+  -webkit-tap-highlight-color: transparent;
+
+  transition: transform 0.26s ease-out, translate 0.26s ease-out;
+  transform-style: preserve-3d;
+}
+
+.keypad .key {
+  transform-style: preserve-3d;
+  border: 0;
+  background: transparent;
+  padding: 0;
+  cursor: pointer;
+  outline: none;
+}
+
+.keypad .key__content {
+  width: 100%;
+  display: inline-block;
+  height: 100%;
+  transition: translate 0.12s ease-out;
+  container-type: inline-size;
+}
+
+.keypad .key[data-pressed="true"] .key__content,
+.keypad .key:active .key__content {
+  translate: 0 calc(var(--travel, 26) * 1%);
+}
+
+.keypad .key__text {
+  height: 46%;
+  width: 86%;
+  position: absolute;
+  font-size: 12cqi;
+  z-index: 21;
+  top: 5%;
+  left: 0;
+  color: hsl(0 0% 94%);
+  translate: 8% 10%;
+  transform: rotateX(36deg) rotateY(45deg) rotateX(-90deg) rotate(0deg);
+  text-align: left;
+  padding: 1ch;
+}
+
+.keypad .keypad__single .key__text {
+  width: 52%;
+  height: 62%;
+  translate: 45% -16%;
+  font-size: 18cqi;
+}
+
+.keypad .keypad__single {
+  position: absolute;
+  width: 40.5%;
+  left: 54%;
+  bottom: 36%;
+  height: 46%;
+  clip-path: polygon(
+    0 0,
+    54% 0,
+    89% 24%,
+    100% 70%,
+    54% 100%,
+    46% 100%,
+    0 69%,
+    12% 23%,
+    47% 0%
+  );
+  -webkit-mask: url(https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86)
+    50% 50% / 100% 100%;
+  mask: url(https://assets.codepen.io/605876/keypad-single.png?format=auto&quality=86)
+    50% 50% / 100% 100%;
+}
+
+.keypad .keypad__single--left {
+  left: 29.3%;
+  bottom: 54.2%;
+}
+
+.keypad .keypad__single img {
+  top: 0;
+  opacity: 1;
+  width: 96%;
+  position: absolute;
+  left: 50%;
+  translate: -50% 1%;
+}
+
+.keypad .key__mask {
+  width: 100%;
+  height: 100%;
+  display: inline-block;
+}
+
+.keypad .keypad__double {
+  position: absolute;
+  width: 64%;
+  height: 65%;
+  left: 6%;
+  bottom: 17.85%;
+  clip-path: polygon(
+    34% 0,
+    93% 44%,
+    101% 78%,
+    71% 100%,
+    66% 100%,
+    0 52%,
+    0 44%,
+    7% 17%,
+    30% 0
+  );
+  -webkit-mask: url(https://assets.codepen.io/605876/keypad-double.png?format=auto&quality=86)
+    50% 50% / 100% 100%;
+  mask: url(https://assets.codepen.io/605876/keypad-double.png?format=auto&quality=86)
+    50% 50% / 100% 100%;
+}
+
+.keypad .keypad__double img {
+  top: 0;
+  opacity: 1;
+  width: 99%;
+  position: absolute;
+  left: 50%;
+  translate: -50% 1%;
+}
+
+.keypad .key img {
+  filter: hue-rotate(calc(var(--hue, 0) * 1deg))
+    saturate(var(--saturate, 1))
+    brightness(var(--brightness, 1));
+  width: 100%;
+  transition: translate 0.12s ease-out;
+}
+
+.keypad__base {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+/* ====== Responsive ====== */
+@media (max-width: 900px) {
+  .cc-card {
+    grid-template-columns: 1fr;
+  }
+  .cc-right {
+    padding: 10px 24px 28px;
+  }
+  .keypad {
+    width: min(420px, 92vw);
+  }
+}
+
+/* =========================================================
+   ContactKeypad - Responsive Fix (Mobile)
+   Pégalo AL FINAL de ContactKeypad.css
+========================================================= */
+
+/* Evita desbordes tontos */
+.ck-section,
+.ck-wrap,
+.ck-card,
+.ck-content {
+  max-width: 100%;
+  overflow-x: hidden;
+}
+
+/* Asegura padding lateral en móvil */
+@media (max-width: 480px) {
+  .ck-section {
+    padding: 16px !important;
+  }
+
+  .ck-card {
+    width: 100% !important;
+    max-width: 100% !important;
+    padding: 18px !important;
+    border-radius: 18px !important;
+  }
+
+  /* Título y texto: que no se recorten */
+  .ck-title,
+  .ck-card h2,
+  .ck-card h3 {
+    font-size: 1.6rem !important;
+    line-height: 1.15 !important;
+    word-break: break-word;
+  }
+
+  .ck-subtitle,
+  .ck-card p {
+    font-size: 0.98rem !important;
+    line-height: 1.45 !important;
+  }
+
+  /* Email “pill” y botones sociales: full width + wrap */
+  .ck-email,
+  .ck-email-pill,
+  .ck-emailButton,
+  .ck-mail {
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .ck-social,
+  .ck-social-row,
+  .ck-icons {
+    display: flex !important;
+    flex-wrap: wrap !important;
+    gap: 10px !important;
+  }
+
+  /* Form: input y botón en columna (no en fila) */
+  .ck-form,
+  .ck-input-row,
+  form {
+    display: flex !important;
+    flex-direction: column !important;
+    align-items: stretch !important;
+    gap: 10px !important;
+  }
+
+  .ck-input,
+  .ck-form input,
+  input[type="email"],
+  input[type="text"] {
+    width: 100% !important;
+    min-width: 0 !important;
+  }
+
+  .ck-send,
+  .ck-btn,
+  .ck-form button,
+  button[type="submit"] {
+    width: 100% !important;
+  }
+
+  /* Imagen del keypad: que no se salga */
+  .ck-keypad,
+  .ck-image,
+  .ck-hero-img,
+  .ck-graphic img,
+  .ck-keypad img {
+    width: 100% !important;
+    height: auto !important;
+    max-width: 340px !important;
+    margin: 18px auto 0 !important;
+    display: block !important;
+    transform: none !important;
+  }
+}
