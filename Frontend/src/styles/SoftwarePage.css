@@ -1,0 +1,1212 @@
+/* src/styles/SoftwarePage.css */
+/* Estilo CodeSandbox + Cards Apple Store */
+
+/* ========================================
+   BASE
+======================================== */
+.software-page {
+  min-height: 100vh;
+  background: #0a0a0a;
+  color: #ffffff;
+  overflow-x: hidden;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 24px;
+}
+
+.erp-label {
+  display: inline-block;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #60a5fa;
+  margin-bottom: 16px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+.erp-section-title {
+  font-size: clamp(2rem, 5vw, 3.5rem);
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 48px;
+}
+
+.erp-section-title--light {
+  color: #ffffff;
+}
+
+.erp-title-accent {
+  color: #60a5fa;
+}
+
+.erp-title-muted {
+  color: #6b7280;
+}
+
+/* ========================================
+   BUTTONS
+======================================== */
+.erp-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 16px 32px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  border-radius: 8px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+  border: none;
+  cursor: pointer;
+}
+
+.erp-btn--accent {
+  background: #60a5fa;
+  color: #0a0a0a;
+}
+
+.erp-btn--accent:hover {
+  background: #93c5fd;
+  transform: translateY(-2px);
+}
+
+.erp-btn--ghost {
+  background: transparent;
+  color: #ffffff;
+  border: 1px solid #333;
+}
+
+.erp-btn--ghost:hover {
+  border-color: #60a5fa;
+  color: #60a5fa;
+}
+
+/* ========================================
+   HERO
+======================================== */
+.erp-hero {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 120px 24px 80px;
+  background: linear-gradient(180deg, #0a0a0a 0%, #111111 100%);
+  position: relative;
+}
+
+.erp-hero::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100%;
+  max-width: 800px;
+  height: 500px;
+  background: radial-gradient(ellipse at center, rgba(96, 165, 250, 0.08) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.erp-hero-content {
+  text-align: center;
+  max-width: 900px;
+  position: relative;
+  z-index: 1;
+}
+
+.erp-back {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 0.9rem;
+  font-weight: 500;
+  color: #6b7280;
+  margin-bottom: 48px;
+  transition: all 0.2s ease;
+  text-decoration: none;
+}
+
+.erp-back:hover {
+  color: #60a5fa;
+  gap: 12px;
+}
+
+.erp-hero-title {
+  font-size: clamp(3rem, 8vw, 6rem);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.04em;
+  margin-bottom: 32px;
+}
+
+.erp-hero-desc {
+  font-size: clamp(1.1rem, 2vw, 1.35rem);
+  color: #9ca3af;
+  line-height: 1.6;
+  max-width: 650px;
+  margin: 0 auto 48px;
+}
+
+.erp-hero-actions {
+  display: flex;
+  justify-content: center;
+  gap: 16px;
+  flex-wrap: wrap;
+}
+
+/* ========================================
+   MARQUEE
+======================================== */
+.erp-marquee {
+  padding: 24px 0;
+  background: #111111;
+  border-top: 1px solid #1f1f1f;
+  border-bottom: 1px solid #1f1f1f;
+  overflow: hidden;
+}
+
+.erp-marquee-track {
+  display: flex;
+  gap: 48px;
+  animation: marquee 30s linear infinite;
+  width: max-content;
+}
+
+.erp-marquee-item {
+  font-size: 1rem;
+  font-weight: 600;
+  color: #4b5563;
+  white-space: nowrap;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+}
+
+@keyframes marquee {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(-50%); }
+}
+
+/* ========================================
+   FEATURES
+======================================== */
+.erp-features {
+  padding: 120px 0;
+  background: #0f0f0f;
+}
+
+.erp-features .erp-section-title {
+  text-align: center;
+}
+
+.erp-features-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 48px 40px;
+}
+
+.erp-feature {
+  text-align: center;
+}
+
+.erp-feature-icon {
+  width: 72px;
+  height: 72px;
+  margin: 0 auto 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #2a2a2a;
+  border-radius: 50%;
+  transition: all 0.3s ease;
+}
+
+.erp-feature-icon svg {
+  width: 32px;
+  height: 32px;
+  color: #60a5fa;
+}
+
+.erp-feature:hover .erp-feature-icon {
+  border-color: #60a5fa;
+  background: rgba(96, 165, 250, 0.1);
+}
+
+.erp-feature-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #ffffff;
+  margin-bottom: 12px;
+}
+
+.erp-feature-desc {
+  font-size: 0.95rem;
+  color: #6b7280;
+  line-height: 1.6;
+  max-width: 280px;
+  margin: 0 auto;
+}
+
+/* ========================================
+   INDUSTRIAS BANNER - APPLE STORE STYLE
+======================================== */
+.erp-industrias-banner {
+  position: relative;
+  padding: 120px 0;
+  overflow: hidden;
+}
+
+/* Fondo con gradiente */
+.banner-bg {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, #1e40af 0%, #2563eb 50%, #3b82f6 100%);
+  overflow: hidden;
+}
+
+/* Cuadrados flotantes animados */
+.floating-boxes {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.floating-boxes li {
+  position: absolute;
+  display: block;
+  width: 25px;
+  height: 25px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 8px;
+  bottom: -120px;
+  animation: floatUp 20s linear infinite;
+}
+
+.floating-boxes li:nth-child(1) {
+  left: 86%;
+  width: 80px;
+  height: 80px;
+  animation-delay: 0s;
+}
+
+.floating-boxes li:nth-child(2) {
+  left: 12%;
+  width: 30px;
+  height: 30px;
+  animation-delay: 1.5s;
+  animation-duration: 10s;
+}
+
+.floating-boxes li:nth-child(3) {
+  left: 70%;
+  width: 100px;
+  height: 100px;
+  animation-delay: 5.5s;
+}
+
+.floating-boxes li:nth-child(4) {
+  left: 42%;
+  width: 150px;
+  height: 150px;
+  animation-delay: 0s;
+  animation-duration: 15s;
+}
+
+.floating-boxes li:nth-child(5) {
+  left: 65%;
+  width: 40px;
+  height: 40px;
+  animation-delay: 0s;
+}
+
+.floating-boxes li:nth-child(6) {
+  left: 15%;
+  width: 110px;
+  height: 110px;
+  animation-delay: 3.5s;
+  animation-duration: 15s;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) rotate(0deg); opacity: 1; }
+  100% { transform: translateY(-120vh) rotate(360deg); opacity: 0; }
+}
+
+.erp-industrias-banner .container {
+  position: relative;
+  z-index: 2;
+}
+
+/* ✅ CENTRADO REAL del label y título en el banner */
+.erp-industrias-banner .erp-label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto 16px;
+  color: rgba(255, 255, 255, 0.85);
+}
+
+.erp-industrias-banner .erp-section-title {
+  text-align: center;
+  color: #ffffff;
+}
+
+.erp-industrias-banner .erp-title-accent {
+  color: #ffffff;
+}
+
+/* Cards Container */
+.erp-cards-container {
+  display: flex;
+  justify-content: center;
+  flex-wrap: wrap;
+  gap: 24px;
+  padding: 20px 0;
+}
+
+/* Product Card - Apple Store Style */
+.erp-product-card {
+  position: relative;
+  flex-shrink: 0;
+  height: 340px;
+  width: 240px;
+  background: #0a0a0a;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.5);
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.erp-product-card:hover {
+  height: 480px;
+  width: 280px;
+  box-shadow: 0 20px 40px -15px rgba(0, 0, 0, 0.7);
+  z-index: 10;
+}
+
+/* Card Top Bar */
+.card-top-bar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 20px;
+}
+
+.card-brand-icon {
+  width: 24px;
+  height: 24px;
+  fill: #60a5fa;
+}
+
+.card-status {
+  font-size: 0.75rem;
+  font-weight: 600;
+  color: #10b981;
+}
+
+/* Card Image */
+.card-img-container {
+  position: absolute;
+  height: 160px;
+  width: 160px;
+  margin: 0 auto;
+  left: 0;
+  right: 0;
+  transform: translateY(20px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.4s ease;
+}
+
+.erp-product-card:hover .card-img-container {
+  transform: translateY(10px) scale(1.1);
+}
+
+.card-product-img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  filter: drop-shadow(0 10px 20px rgba(0, 0, 0, 0.3));
+  transition: all 0.4s ease;
+}
+
+/* ✅ Más aire + evita que el botón se monte */
+.card-details {
+  position: absolute;
+  bottom: -220px;
+  left: 0;
+  right: 0;
+  height: 280px;
+  background: #1a1a1a;
+  border-radius: 20px;
+  padding: 22px 22px 22px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.erp-product-card:hover .card-details {
+  bottom: 0;
+}
+
+/* ✅ Títulos con aire (no pegados al borde) */
+.card-name-fav {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 12px;
+  padding-right: 4px;
+}
+
+.card-product-name {
+  font-size: 1.12rem;
+  font-weight: 800;
+  color: #ffffff;
+  line-height: 1.15;
+  letter-spacing: -0.01em;
+  padding: 2px 0;
+  max-width: 78%;
+  overflow-wrap: anywhere;
+}
+
+.card-fav-btn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  padding: 6px;
+  margin-right: -6px;
+  transition: all 0.2s ease;
+}
+
+.card-fav-btn svg {
+  width: 20px;
+  height: 20px;
+  color: #6b7280;
+  transition: all 0.2s ease;
+}
+
+.card-fav-btn:hover svg {
+  color: #ef4444;
+  fill: #ef4444;
+}
+
+/* Card Wrapper - Hidden content */
+.card-wrapper {
+  display: none;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.erp-product-card:hover .card-wrapper {
+  display: flex;
+}
+
+.card-tagline {
+  font-size: 0.85rem;
+  font-weight: 700;
+  color: #60a5fa;
+}
+
+.card-description {
+  font-size: 0.85rem;
+  color: #9ca3af;
+  line-height: 1.5;
+}
+
+/* ✅ COTIZAR: abajo + izquierda, sin absolute (ya no tapa texto) */
+.card-purchase {
+  margin-top: 10px;
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+
+  opacity: 0;
+  transform: translateY(8px);
+  pointer-events: none;
+  transition: all 0.25s ease;
+}
+
+.erp-product-card:hover .card-purchase {
+  opacity: 1;
+  transform: translateY(0);
+  pointer-events: auto;
+}
+
+.card-add-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  padding: 8px 14px;
+  font-size: 0.8rem;
+  font-weight: 700;
+
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(6px);
+
+  border: 1px solid rgba(255, 255, 255, 0.15);
+  border-radius: 999px;
+
+  color: #ffffff;
+  text-decoration: none;
+  transition: all 0.25s ease;
+}
+
+.card-add-btn:hover {
+  background: #60a5fa;
+  color: #0a0a0a;
+}
+
+/* ========================================
+   TESTIMONIOS
+======================================== */
+.erp-testimonios {
+  padding: 120px 0;
+  background: #0a0a0a;
+  overflow: hidden;
+}
+
+/* ✅ CENTRADO REAL del label y título en testimonios */
+.erp-testimonios .erp-label {
+  display: block;
+  width: 100%;
+  text-align: center;
+  margin: 0 auto 16px;
+}
+
+.erp-testimonios .erp-section-title {
+  text-align: center;
+}
+
+.erp-testimonios-track {
+  display: flex;
+  gap: 24px;
+  padding: 0 24px;
+  overflow-x: auto;
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+  scroll-snap-type: x mandatory;
+}
+
+.erp-testimonios-track::-webkit-scrollbar {
+  display: none;
+}
+
+.erp-testimonio-card {
+  flex: 0 0 400px;
+  background: #60a5fa;
+  border-radius: 20px;
+  padding: 32px;
+  color: #0a0a0a;
+  scroll-snap-align: start;
+}
+
+.erp-testimonio-texto {
+  font-size: 1.05rem;
+  font-weight: 700;
+  line-height: 1.5;
+  margin-bottom: 28px;
+}
+
+.erp-testimonio-autor {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+.erp-testimonio-avatar {
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  background: #0a0a0a;
+  color: #60a5fa;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 800;
+  font-size: 1.1rem;
+}
+
+.erp-testimonio-nombre {
+  display: block;
+  font-weight: 800;
+  font-size: 0.95rem;
+}
+
+.erp-testimonio-cargo {
+  font-size: 0.85rem;
+  opacity: 0.75;
+}
+
+/* ========================================
+   STATS
+======================================== */
+.erp-stats {
+  padding: 100px 0;
+  background: #0a0a0a;
+  border-top: 1px solid #1f1f1f;
+}
+
+.erp-stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 32px;
+  text-align: center;
+}
+
+.erp-stat-value {
+  display: block;
+  font-size: clamp(2.5rem, 5vw, 4rem);
+  font-weight: 800;
+  color: #ffffff;
+  letter-spacing: -0.03em;
+  margin-bottom: 8px;
+}
+
+.erp-stat-label {
+  font-size: 1rem;
+  color: #6b7280;
+}
+
+/* ========================================
+   CTA FINAL
+======================================== */
+.erp-cta {
+  padding: 120px 0 80px;
+  background: #0a0a0a;
+}
+
+.erp-cta .container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 64px;
+  align-items: center;
+}
+
+.erp-cta-title {
+  font-size: clamp(2rem, 4vw, 3rem);
+  font-weight: 800;
+  line-height: 1.15;
+  letter-spacing: -0.03em;
+  margin-bottom: 32px;
+}
+
+.erp-cta-visual {
+  position: relative;
+  height: 400px;
+}
+
+.erp-cta-window {
+  position: absolute;
+  background: #151515;
+  border: 1px solid #2a2a2a;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.5);
+}
+
+.erp-cta-window--1 {
+  width: 280px;
+  height: 200px;
+  top: 20%;
+  right: 10%;
+  z-index: 3;
+}
+
+.erp-cta-window--2 {
+  width: 220px;
+  height: 160px;
+  bottom: 15%;
+  left: 5%;
+  z-index: 2;
+  transform: rotate(-6deg);
+}
+
+.erp-cta-window--3 {
+  width: 200px;
+  height: 120px;
+  bottom: 5%;
+  right: 20%;
+  z-index: 1;
+  transform: rotate(3deg);
+}
+
+.window-header {
+  display: flex;
+  gap: 6px;
+  padding: 12px 16px;
+  background: #1a1a1a;
+  border-bottom: 1px solid #2a2a2a;
+}
+
+.window-header span {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: #333;
+}
+
+.window-header span:first-child { background: #ef4444; }
+.window-header span:nth-child(2) { background: #f59e0b; }
+.window-header span:nth-child(3) { background: #10b981; }
+
+.window-content {
+  padding: 20px;
+}
+
+.window-chart {
+  display: flex;
+  align-items: flex-end;
+  gap: 12px;
+  height: 100px;
+}
+
+.window-chart div {
+  flex: 1;
+  background: linear-gradient(180deg, #60a5fa 0%, #3b82f6 100%);
+  border-radius: 4px 4px 0 0;
+}
+
+.window-lines div {
+  height: 12px;
+  background: #2a2a2a;
+  border-radius: 4px;
+  margin-bottom: 10px;
+}
+
+.window-lines div:nth-child(1) { width: 100%; }
+.window-lines div:nth-child(2) { width: 80%; }
+.window-lines div:nth-child(3) { width: 90%; }
+.window-lines div:nth-child(4) { width: 60%; }
+
+.window-code {
+  font-family: 'Fira Code', 'Monaco', monospace;
+  font-size: 0.85rem;
+  color: #9ca3af;
+}
+
+.code-keyword { color: #c084fc; }
+.code-string { color: #60a5fa; }
+
+/* ========================================
+   FOOTER CTA
+======================================== */
+.erp-footer-cta {
+  padding: 60px 0 100px;
+  background: #0a0a0a;
+  text-align: center;
+}
+
+.erp-footer-cta p {
+  color: #6b7280;
+  margin-bottom: 16px;
+  font-size: 1.05rem;
+}
+
+.erp-footer-cta a {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  color: #60a5fa;
+  font-weight: 700;
+  font-size: 1.05rem;
+  transition: gap 0.2s ease;
+  text-decoration: none;
+}
+
+.erp-footer-cta a:hover {
+  gap: 14px;
+}
+
+/* ========================================
+   RESPONSIVE
+======================================== */
+@media (max-width: 1024px) {
+  .erp-features-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px 32px;
+  }
+
+  .erp-cards-container {
+    justify-content: flex-start;
+    overflow-x: auto;
+    flex-wrap: nowrap;
+    padding: 20px;
+    gap: 20px;
+  }
+
+  .erp-product-card {
+    flex-shrink: 0;
+  }
+
+  .erp-stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+  }
+
+  .erp-cta .container {
+    grid-template-columns: 1fr;
+    gap: 48px;
+  }
+
+  .erp-cta-content {
+    text-align: center;
+  }
+
+  .erp-cta-visual {
+    height: 300px;
+  }
+
+  .erp-cta-window--1 {
+    right: 50%;
+    transform: translateX(50%);
+  }
+
+  .erp-cta-window--2 {
+    left: 10%;
+  }
+
+  .erp-cta-window--3 {
+    right: 10%;
+  }
+}
+
+@media (max-width: 768px) {
+  .erp-hero {
+    min-height: auto;
+    padding: 120px 24px 60px;
+  }
+
+  .erp-hero-title {
+    font-size: 2.5rem;
+  }
+
+  .erp-hero-actions {
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .erp-btn {
+    width: 100%;
+    max-width: 320px;
+  }
+
+  .erp-features,
+  .erp-industrias-banner,
+  .erp-testimonios,
+  .erp-cta {
+    padding: 80px 0;
+  }
+
+  .erp-features-grid {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .erp-cards-container {
+    padding: 20px 16px;
+  }
+
+  .erp-product-card {
+    height: 320px;
+    width: 220px;
+  }
+
+  .erp-product-card:hover {
+    height: 460px;
+    width: 260px;
+  }
+
+  .erp-testimonio-card {
+    flex: 0 0 320px;
+    padding: 24px;
+  }
+
+  .erp-stats {
+    padding: 60px 0;
+  }
+
+  .erp-stats-grid {
+    grid-template-columns: 1fr 1fr;
+    gap: 32px;
+  }
+
+  .erp-stat-value {
+    font-size: 2.5rem;
+  }
+
+  .erp-cta-visual {
+    display: none;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 0 16px;
+  }
+
+  .erp-hero {
+    padding: 100px 16px 40px;
+  }
+
+  .erp-hero-title {
+    font-size: 2rem;
+  }
+
+  .erp-section-title {
+    font-size: 1.75rem;
+  }
+
+  .erp-feature-icon {
+    width: 60px;
+    height: 60px;
+  }
+
+  .erp-feature-icon svg {
+    width: 26px;
+    height: 26px;
+  }
+
+  .erp-product-card {
+    height: 300px;
+    width: 200px;
+  }
+
+  .erp-product-card:hover {
+    height: 440px;
+    width: 240px;
+  }
+
+  .card-img-container {
+    height: 140px;
+    width: 140px;
+  }
+
+  .card-product-name {
+    font-size: 1rem;
+  }
+
+  .erp-testimonio-card {
+    flex: 0 0 280px;
+  }
+
+  .erp-stats-grid {
+    gap: 24px;
+  }
+
+  .erp-stat-value {
+    font-size: 2rem;
+  }
+
+  .erp-stat-label {
+    font-size: 0.85rem;
+  }
+
+  .erp-cta-title {
+    font-size: 1.75rem;
+  }
+}
+
+/* ========================================
+   LIGHT MODE OVERRIDES
+======================================== */
+[data-theme="light"] .software-page {
+  background: #fafafa;
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .erp-hero {
+  background: linear-gradient(180deg, #f8fafc 0%, #f1f5f9 100%);
+}
+
+[data-theme="light"] .erp-hero::before {
+  background: radial-gradient(ellipse at center, rgba(37, 99, 235, 0.08) 0%, transparent 70%);
+}
+
+[data-theme="light"] .erp-hero-title {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .erp-title-accent {
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .erp-hero-desc {
+  color: #64748b;
+}
+
+[data-theme="light"] .erp-btn--accent {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+[data-theme="light"] .erp-btn--accent:hover {
+  background: var(--color-primary-dark);
+}
+
+[data-theme="light"] .erp-btn--ghost {
+  color: #1a1a1a;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .erp-btn--ghost:hover {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .erp-marquee {
+  background: #f1f5f9;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .erp-marquee-item {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .erp-features {
+  background: #ffffff;
+}
+
+[data-theme="light"] .erp-section-title {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .erp-title-muted {
+  color: #94a3b8;
+}
+
+[data-theme="light"] .erp-feature-icon {
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .erp-feature-icon svg {
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .erp-feature:hover .erp-feature-icon {
+  border-color: var(--color-primary);
+  background: rgba(37, 99, 235, 0.05);
+}
+
+[data-theme="light"] .erp-feature-title {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .erp-feature-desc {
+  color: #64748b;
+}
+
+/* Light mode - Banner keeps the gradient */
+[data-theme="light"] .erp-industrias-banner .erp-section-title--light {
+  color: #ffffff;
+}
+
+[data-theme="light"] .erp-product-card {
+  background: #ffffff;
+  border: 1px solid #e2e8f0;
+}
+
+[data-theme="light"] .card-details {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .card-product-name {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .card-description {
+  color: #64748b;
+}
+
+[data-theme="light"] .card-add-btn {
+  border-color: var(--color-primary);
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .card-add-btn:hover {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+[data-theme="light"] .erp-testimonios {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .erp-testimonio-card {
+  background: var(--color-primary);
+  color: #ffffff;
+}
+
+[data-theme="light"] .erp-testimonio-avatar {
+  background: #ffffff;
+  color: var(--color-primary);
+}
+
+[data-theme="light"] .erp-stats {
+  background: #ffffff;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .erp-stat-value {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .erp-stat-label {
+  color: #64748b;
+}
+
+[data-theme="light"] .erp-cta {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .erp-cta-title {
+  color: #1a1a1a;
+}
+
+[data-theme="light"] .erp-cta-window {
+  background: #ffffff;
+  border-color: #e2e8f0;
+  box-shadow: 0 24px 48px -12px rgba(0, 0, 0, 0.1);
+}
+
+[data-theme="light"] .window-header {
+  background: #f8fafc;
+  border-color: #e2e8f0;
+}
+
+[data-theme="light"] .window-lines div {
+  background: #e2e8f0;
+}
+
+[data-theme="light"] .window-code {
+  color: #64748b;
+}
+
+[data-theme="light"] .code-keyword { color: #8b5cf6; }
+[data-theme="light"] .code-string { color: var(--color-primary); }
+
+[data-theme="light"] .erp-footer-cta {
+  background: #f8fafc;
+}
+
+[data-theme="light"] .erp-footer-cta p {
+  color: #64748b;
+}
+
+[data-theme="light"] .erp-footer-cta a {
+  color: var(--color-primary);
+}
