@@ -171,17 +171,17 @@ function CotizarPage() {
             const mensaje = `
 *Nueva Cotización - IMTP Studios*
 
-📋 *Servicio:* ${servicios.find(s => s.id === formData.servicio)?.nombre}
-💰 *Presupuesto:* ${presupuestos.find(p => p.id === formData.presupuesto)?.label}
-⏱ *Tiempo:* ${tiempos.find(t => t.id === formData.tiempo)?.label}
+ *Servicio:* ${servicios.find(s => s.id === formData.servicio)?.nombre}
+ *Presupuesto:* ${presupuestos.find(p => p.id === formData.presupuesto)?.label}
+ *Tiempo:* ${tiempos.find(t => t.id === formData.tiempo)?.label}
 
-👤 *Contacto:*
+ *Contacto:*
 • Nombre: ${formData.nombre}
 • Empresa: ${formData.empresa || 'No especificada'}
 • Email: ${formData.email}
 • Teléfono: ${formData.telefono || 'No especificado'}
 
-📝 *Descripción:*
+ *Descripción:*
 ${formData.descripcion || 'Sin descripción adicional'}
 
 🆔 *Lead ID:* ${leadId || 'N/A'}
@@ -469,7 +469,7 @@ ${formData.descripcion || 'Sin descripción adicional'}
                         name="telefono"
                         value={formData.telefono}
                         onChange={handleInputChange}
-                        placeholder="+57 300 000 0000"
+                        placeholder="+573207262477"
                       />
                     </div>
                   </div>

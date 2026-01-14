@@ -385,7 +385,7 @@ function ContactForm() {
                 type="tel"
                 id="celular"
                 name="celular"
-                placeholder="+57 300 000 0000"
+                placeholder="+573207262477"
                 value={formData.celular}
                 onChange={handleChange}
                 onFocus={() => setFocusedField("celular")}
