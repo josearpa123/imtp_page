@@ -1,5 +1,5 @@
 <?php
-
+use App\Http\Controllers\LeadController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Admin\AdminUsersController;
@@ -7,6 +7,9 @@ use App\Http\Controllers\Admin\AdminUsersController;
 Route::get('/ping', function () {
     return response()->json(['ok' => true, 'message' => 'API viva']);
 });
+
+
+Route::post('/leads', [LeadController::class, 'store'])->middleware('throttle:30,1');
 
 Route::post('/auth/login', [AuthController::class, 'login']);
 
