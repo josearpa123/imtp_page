@@ -1,9 +1,72 @@
 // src/pages/servicios/ServiciosPage.jsx
+import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import ContactKeypad from "../../components/ContactKeypad";
 import "../../styles/ServiciosPage.css";
 
+function PageLoader({ onComplete }) {
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const timer = setInterval(() => {
+      setProgress((prev) => {
+        if (prev >= 100) {
+          clearInterval(timer);
+          setTimeout(onComplete, 250);
+          return 100;
+        }
+        return Math.min(100, prev + Math.random() * 22 + 12);
+      });
+    }, 120);
+
+    return () => clearInterval(timer);
+  }, [onComplete]);
+
+  return (
+    <div className="srv-page-loader" aria-label="Cargando">
+      <div className="srv-loader-content">
+        <div className="srv-loader-icon" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+            <path d="M12 2v4" />
+            <path d="M12 18v4" />
+            <path d="M4.93 4.93l2.83 2.83" />
+            <path d="M16.24 16.24l2.83 2.83" />
+            <path d="M2 12h4" />
+            <path d="M18 12h4" />
+            <path d="M4.93 19.07l2.83-2.83" />
+            <path d="M16.24 7.76l2.83-2.83" />
+          </svg>
+        </div>
+
+        <h2>Cargando servicios…</h2>
+
+        <div
+          className="srv-loader-bar"
+          role="progressbar"
+          aria-valuenow={Math.round(progress)}
+          aria-valuemin={0}
+          aria-valuemax={100}
+        >
+          <div className="srv-loader-progress" style={{ width: `${progress}%` }} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
 function ServiciosPage() {
+  const [isLoading, setIsLoading] = useState(true);
+  const [isVisible, setIsVisible] = useState(false);
+
+  const handleLoadComplete = () => {
+    setIsLoading(false);
+    setTimeout(() => setIsVisible(true), 80);
+  };
+
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   const servicios = [
     {
       id: "software",
@@ -176,112 +239,145 @@ function ServiciosPage() {
 
   return (
     <div className="servicios-page">
-      {/* Hero con Video de Fondo */}
-      <section className="srv-hero">
-        <div className="srv-hero-video-container">
-          <video className="srv-hero-video" autoPlay loop muted playsInline>
-            <source src="/assets/servicios/vide_servicios.mp4" type="video/mp4" />
-          </video>
-          <div className="srv-hero-video-overlay"></div>
-        </div>
+      {isLoading && <PageLoader onComplete={handleLoadComplete} />}
 
-        <div className="container">
-          <div className="srv-hero-content">
-            <span className="srv-hero-label">Soluciones Tecnológicas</span>
-            <h1 className="srv-hero-title">
-              Construimos lo que tu negocio
-              <span className="srv-hero-accent"> realmente necesita</span>
-            </h1>
-            <p className="srv-hero-text">
-              No vendemos servicios genéricos. Diagnosticamos, analizamos y desarrollamos la
-              solución exacta que impulsa tu crecimiento.
-            </p>
-            <div className="srv-hero-cta">
-              <Link to="/contacto" className="srv-hero-btn">
-                Comenzar proyecto
-                <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                  <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+      <main className={`srv-main ${isLoading ? "loading" : ""} ${isVisible ? "visible" : ""}`}>
+        {/* Hero con Video de Fondo */}
+        <section className="srv-hero">
+          <div className="srv-hero-video-container">
+            <video className="srv-hero-video" autoPlay loop muted playsInline>
+              <source src="/assets/servicios/vide_servicios.mp4" type="video/mp4" />
+            </video>
+            <div className="srv-hero-video-overlay"></div>
+          </div>
+
+          <div className="container">
+            <div className="srv-hero-content">
+              <span className="srv-hero-label animate-item" style={{ "--delay": "0.10s" }}>
+                Soluciones Tecnológicas
+              </span>
+
+              <h1 className="srv-hero-title animate-item" style={{ "--delay": "0.18s" }}>
+                Construimos lo que tu negocio
+                <span className="srv-hero-accent"> realmente necesita</span>
+              </h1>
+
+              <p className="srv-hero-text animate-item" style={{ "--delay": "0.26s" }}>
+                No vendemos servicios genéricos. Diagnosticamos, analizamos y desarrollamos la
+                solución exacta que impulsa tu crecimiento.
+              </p>
+
+              <div className="srv-hero-cta animate-item" style={{ "--delay": "0.34s" }}>
+                <Link to="/contacto" className="srv-hero-btn">
+                  Comenzar proyecto
+                  <svg
+                    width="20"
+                    height="20"
+                    fill="none"
+                    viewBox="0 0 24 24"
+                    stroke="currentColor"
+                    strokeWidth={2}
+                  >
+                    <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                  </svg>
+                </Link>
+              </div>
+            </div>
+          </div>
+
+          <div className="srv-hero-scroll animate-item" style={{ "--delay": "0.44s" }}>
+            <span>Explorar servicios</span>
+            <div className="scroll-line"></div>
+          </div>
+        </section>
+
+        {/* Grid de Servicios */}
+        <section className="srv-showcase">
+          <div className="srv-showcase-grid">
+            {servicios.map((servicio, i) => (
+              <Link
+                key={servicio.id}
+                to={servicio.link}
+                className="srv-card animate-item"
+                style={{ "--delay": `${0.10 + i * 0.08}s` }}
+              >
+                <div className="srv-card-bg">
+                  <div
+                    className="srv-card-image"
+                    style={{ backgroundImage: `url(${servicio.imagen})` }}
+                  />
+                  <div className="srv-card-gradient" style={{ background: servicio.gradient }} />
+                  <div className="srv-card-overlay" />
+                </div>
+
+                <div className="srv-card-content">
+                  <div className="srv-card-header">
+                    <span className="srv-card-label">{servicio.subtitulo}</span>
+                    <h2 className="srv-card-title">{servicio.titulo}</h2>
+                  </div>
+
+                  <p className="srv-card-desc">{servicio.descripcion}</p>
+
+                  <div className="srv-card-footer">
+                    <span className="srv-card-link">
+                      Explorar
+                      <svg
+                        width="20"
+                        height="20"
+                        fill="none"
+                        viewBox="0 0 24 24"
+                        stroke="currentColor"
+                        strokeWidth={2}
+                      >
+                        <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
+                      </svg>
+                    </span>
+                  </div>
+                </div>
+
+                <div className="srv-card-preview">{renderPreview(servicio.preview)}</div>
+              </Link>
+            ))}
+          </div>
+        </section>
+
+        {/* Sección Académica */}
+        <section className="srv-academico">
+          <div className="container">
+            <div className="srv-academico-inner animate-item" style={{ "--delay": "0.18s" }}>
+              <div className="srv-academico-icon">
+                <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"
+                  />
+                </svg>
+              </div>
+
+              <div className="srv-academico-content">
+                <h3>Apoyo Académico Universitario</h3>
+                <p>
+                  Acompañamiento técnico para estudiantes. Proyectos de grado, revisión de código,
+                  arquitectura de sistemas y mejores prácticas.
+                </p>
+              </div>
+
+              <Link to="/servicios/academico" className="srv-academico-link">
+                Consultar
+                <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
+                  <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
                 </svg>
               </Link>
             </div>
           </div>
+        </section>
+
+        {/* Contacto (Keypad) */}
+        <div className="animate-item" style={{ "--delay": "0.12s" }}>
+          <ContactKeypad />
         </div>
-
-        <div className="srv-hero-scroll">
-          <span>Explorar servicios</span>
-          <div className="scroll-line"></div>
-        </div>
-      </section>
-
-      {/* Grid de Servicios */}
-      <section className="srv-showcase">
-        <div className="srv-showcase-grid">
-          {servicios.map((servicio) => (
-            <Link key={servicio.id} to={servicio.link} className="srv-card">
-              <div className="srv-card-bg">
-                <div className="srv-card-image" style={{ backgroundImage: `url(${servicio.imagen})` }} />
-                <div className="srv-card-gradient" style={{ background: servicio.gradient }} />
-                <div className="srv-card-overlay" />
-              </div>
-
-              <div className="srv-card-content">
-                <div className="srv-card-header">
-                  <span className="srv-card-label">{servicio.subtitulo}</span>
-                  <h2 className="srv-card-title">{servicio.titulo}</h2>
-                </div>
-
-                <p className="srv-card-desc">{servicio.descripcion}</p>
-
-                <div className="srv-card-footer">
-                  <span className="srv-card-link">
-                    Explorar
-                    <svg width="20" height="20" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                      <path strokeLinecap="round" strokeLinejoin="round" d="M17 8l4 4m0 0l-4 4m4-4H3" />
-                    </svg>
-                  </span>
-                </div>
-              </div>
-
-              <div className="srv-card-preview">{renderPreview(servicio.preview)}</div>
-            </Link>
-          ))}
-        </div>
-      </section>
-
-      {/* Sección Académica */}
-      <section className="srv-academico">
-        <div className="container">
-          <div className="srv-academico-inner">
-            <div className="srv-academico-icon">
-              <svg fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={1.5}>
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  d="M4.26 10.147a60.436 60.436 0 00-.491 6.347A48.627 48.627 0 0112 20.904a48.627 48.627 0 018.232-4.41 60.46 60.46 0 00-.491-6.347m-15.482 0a50.57 50.57 0 00-2.658-.813A59.905 59.905 0 0112 3.493a59.902 59.902 0 0110.399 5.84c-.896.248-1.783.52-2.658.814m-15.482 0A50.697 50.697 0 0112 13.489a50.702 50.702 0 017.74-3.342"
-                />
-              </svg>
-            </div>
-
-            <div className="srv-academico-content">
-              <h3>Apoyo Académico Universitario</h3>
-              <p>
-                Acompañamiento técnico para estudiantes. Proyectos de grado, revisión de código,
-                arquitectura de sistemas y mejores prácticas.
-              </p>
-            </div>
-
-            <Link to="/servicios/academico" className="srv-academico-link">
-              Consultar
-              <svg width="16" height="16" fill="none" viewBox="0 0 24 24" stroke="currentColor" strokeWidth={2}>
-                <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-              </svg>
-            </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* ✅ Contacto NUEVO (Keypad) */}
-      <ContactKeypad />
+      </main>
     </div>
   );
 }

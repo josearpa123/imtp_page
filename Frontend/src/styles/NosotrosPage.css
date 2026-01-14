@@ -10,7 +10,7 @@
   --nos-blue-light: #3b82f6;
   --nos-blue-dark: #1d4ed8;
   --nos-glow: rgba(37, 99, 235, 0.4);
-  
+
   min-height: 100vh;
   background: #050505;
   color: #ffffff;
@@ -24,6 +24,134 @@
   padding: 0 24px;
 }
 
+/* ========================================
+   PAGE REVEAL (tipo Contacto)
+======================================== */
+.nosotros-main {
+  opacity: 0;
+  transition: opacity 0.5s ease;
+}
+
+.nosotros-main.loading {
+  pointer-events: none;
+}
+
+.nosotros-main.visible {
+  opacity: 1;
+}
+
+/* ========================================
+   LOADER (tipo Contacto)
+======================================== */
+.nosotros-page-loader {
+  position: fixed;
+  inset: 0;
+  background: radial-gradient(circle at 20% 20%, rgba(37, 99, 235, 0.14) 0%, transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(59, 130, 246, 0.12) 0%, transparent 45%),
+    linear-gradient(135deg, #070a12 0%, #050505 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+  animation: loaderFadeOut 0.55s ease forwards;
+  animation-delay: 0.75s;
+}
+
+html[data-theme="light"] .nosotros-page-loader {
+  background: linear-gradient(135deg, #fbfdff 0%, #f3f7ff 100%);
+}
+
+@keyframes loaderFadeOut {
+  to {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+  }
+}
+
+.nosotros-page-loader .loader-content {
+  text-align: center;
+  padding: 0 1rem;
+}
+
+.nosotros-page-loader .loader-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 70px;
+  height: 70px;
+  background: linear-gradient(135deg, var(--nos-blue) 0%, var(--nos-blue-light) 100%);
+  border-radius: 16px;
+  margin-bottom: 1.25rem;
+  box-shadow: 0 10px 40px rgba(37, 99, 235, 0.22);
+  animation: iconFloat 1.5s ease-in-out infinite;
+}
+
+@keyframes iconFloat {
+  0%,
+  100% {
+    transform: translateY(0) rotate(0deg);
+  }
+  50% {
+    transform: translateY(-8px) rotate(-2deg);
+  }
+}
+
+.nosotros-page-loader .loader-icon svg {
+  width: 32px;
+  height: 32px;
+  stroke: #fff;
+}
+
+.nosotros-page-loader h2 {
+  font-size: 1.1rem;
+  font-weight: 650;
+  color: rgba(255, 255, 255, 0.78);
+  margin: 0 0 1.2rem;
+}
+
+html[data-theme="light"] .nosotros-page-loader h2 {
+  color: #334155;
+}
+
+.nosotros-page-loader .loader-bar {
+  width: 190px;
+  height: 4px;
+  background: rgba(148, 163, 184, 0.20);
+  border-radius: 10px;
+  overflow: hidden;
+  margin: 0 auto;
+}
+
+html[data-theme="light"] .nosotros-page-loader .loader-bar {
+  background: rgba(148, 163, 184, 0.35);
+}
+
+.nosotros-page-loader .loader-progress {
+  height: 100%;
+  background: linear-gradient(90deg, var(--nos-blue) 0%, var(--nos-blue-light) 100%);
+  border-radius: 10px;
+  transition: width 0.2s ease;
+}
+
+/* ========================================
+   ANIMACIONES (stagger tipo Contacto)
+======================================== */
+.animate-item {
+  opacity: 0;
+  transform: translateY(22px);
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  transition-delay: var(--delay, 0s);
+}
+
+.nosotros-main.visible .animate-item {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ========================================
+   TITLES / LABELS
+======================================== */
 .nos-label {
   display: inline-flex;
   align-items: center;
@@ -157,15 +285,21 @@
 }
 
 @keyframes glow-pulse {
-  0%, 100% { opacity: 0.4; transform: translateX(-50%) scale(1); }
-  50% { opacity: 0.6; transform: translateX(-50%) scale(1.1); }
+  0%,
+  100% {
+    opacity: 0.4;
+    transform: translateX(-50%) scale(1);
+  }
+  50% {
+    opacity: 0.6;
+    transform: translateX(-50%) scale(1.1);
+  }
 }
 
 .hero-grid {
   position: absolute;
   inset: 0;
-  background-image: 
-    linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+  background-image: linear-gradient(rgba(255, 255, 255, 0.02) 1px, transparent 1px),
     linear-gradient(90deg, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
   background-size: 64px 64px;
   mask-image: radial-gradient(ellipse at center, black 30%, transparent 70%);
@@ -206,8 +340,15 @@
 }
 
 @keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(1.2); }
+  0%,
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
+  50% {
+    opacity: 0.5;
+    transform: scale(1.2);
+  }
 }
 
 .nos-hero-title {
@@ -316,9 +457,7 @@
   border: 1px solid #1f1f1f;
   border-radius: 16px;
   overflow: hidden;
-  box-shadow: 
-    0 0 0 1px rgba(255, 255, 255, 0.05),
-    0 20px 50px -20px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.05), 0 20px 50px -20px rgba(0, 0, 0, 0.5);
 }
 
 .code-header {
@@ -342,14 +481,20 @@
   background: #27272a;
 }
 
-.code-dots span:first-child { background: #ef4444; }
-.code-dots span:nth-child(2) { background: #eab308; }
-.code-dots span:last-child { background: #22c55e; }
+.code-dots span:first-child {
+  background: #ef4444;
+}
+.code-dots span:nth-child(2) {
+  background: #eab308;
+}
+.code-dots span:last-child {
+  background: #22c55e;
+}
 
 .code-filename {
   font-size: 0.85rem;
   color: #71717a;
-  font-family: 'SF Mono', 'Fira Code', monospace;
+  font-family: "SF Mono", "Fira Code", monospace;
 }
 
 .code-body {
@@ -358,16 +503,26 @@
 
 .code-body pre {
   margin: 0;
-  font-family: 'SF Mono', 'Fira Code', 'Consolas', monospace;
+  font-family: "SF Mono", "Fira Code", "Consolas", monospace;
   font-size: 0.9rem;
   line-height: 1.8;
 }
 
-.code-keyword { color: #c084fc; }
-.code-var { color: #60a5fa; }
-.code-op { color: #71717a; }
-.code-prop { color: #4ade80; }
-.code-string { color: #fbbf24; }
+.code-keyword {
+  color: #c084fc;
+}
+.code-var {
+  color: #60a5fa;
+}
+.code-op {
+  color: #71717a;
+}
+.code-prop {
+  color: #4ade80;
+}
+.code-string {
+  color: #fbbf24;
+}
 
 /* ========================================
    EQUIPO
@@ -690,8 +845,14 @@
 }
 
 @keyframes ripple {
-  0% { transform: scale(0.8); opacity: 1; }
-  100% { transform: scale(2); opacity: 0; }
+  0% {
+    transform: scale(0.8);
+    opacity: 1;
+  }
+  100% {
+    transform: scale(2);
+    opacity: 0;
+  }
 }
 
 .pin-dot {
@@ -948,8 +1109,7 @@
 }
 
 [data-theme="light"] .hero-grid {
-  background-image: 
-    linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+  background-image: linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
     linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
 }
 
