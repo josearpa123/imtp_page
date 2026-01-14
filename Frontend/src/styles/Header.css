@@ -32,16 +32,6 @@
   object-fit: contain;
 }
 
-.logo-text {
-  font-size: 1.5rem;
-  font-weight: 700;
-  color: var(--color-text);
-}
-
-.logo-accent {
-  color: var(--color-primary);
-}
-
 /* Desktop Nav */
 .desktop-nav {
   display: none;
@@ -244,20 +234,36 @@
   height: 18px;
 }
 
-/* CTA Button */
+/* CTA Button (MEJORADO) — lo dejo por si lo usas después, pero ya no se muestra */
 .cta-button {
   display: none;
+  align-items: center;
+  gap: 10px;
   padding: var(--spacing-sm) var(--spacing-lg);
   font-size: 0.875rem;
   font-weight: 600;
   color: #ffffff;
   background: var(--color-primary);
   border-radius: var(--radius-md);
-  transition: background var(--transition-fast);
+  text-decoration: none;
+  transition: background var(--transition-fast), transform 180ms ease, box-shadow 180ms ease;
+  box-shadow: 0 8px 24px rgba(37, 99, 235, 0.28);
+}
+
+.cta-button svg {
+  width: 18px;
+  height: 18px;
 }
 
 .cta-button:hover {
   background: var(--color-primary-dark);
+  transform: translateY(-1px);
+  box-shadow: 0 10px 28px rgba(37, 99, 235, 0.34);
+}
+
+.cta-button:active {
+  transform: translateY(0);
+  box-shadow: 0 6px 18px rgba(37, 99, 235, 0.24);
 }
 
 /* Mobile Toggle */
@@ -399,9 +405,8 @@
     display: flex;
   }
 
-  .cta-button {
-    display: inline-flex;
-  }
+  /* ✅ IMPORTANTE: Quitado para que NO aparezca Cotizar como botón */
+  /* .cta-button { display: inline-flex; } */
 
   .mobile-toggle {
     display: none;
@@ -411,6 +416,7 @@
     display: none;
   }
 }
+
 /* =========================
    Login Button Animation
    ========================= */
