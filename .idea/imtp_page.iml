@@ -117,6 +117,10 @@
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/vlucas/phpdotenv" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/voku/portable-ascii" />
       <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/laravel/sanctum" />
+      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/sebastian/version" />
+      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/staabm/side-effects-detector" />
+      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/symfony/yaml" />
+      <excludeFolder url="file://$MODULE_DIR$/imtp-backend/vendor/theseer/tokenizer" />
     </content>
     <orderEntry type="inheritedJdk" />
     <orderEntry type="sourceFolder" forTests="false" />

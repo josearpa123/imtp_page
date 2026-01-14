@@ -2,6 +2,7 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import "../styles/CotizarPage.css";
+import { LeadsService } from "../services/LeadsService.js";
 
 function CotizarPage() {
   useEffect(() => {
@@ -124,14 +125,50 @@ function CotizarPage() {
     }
   };
 
-  const handleSubmit = async () => {
-    setIsSubmitting(true);
-    
-    // Simular envío
-    await new Promise(resolve => setTimeout(resolve, 2000));
-    
-    // Enviar a WhatsApp
-    const mensaje = `
+    const handleSubmit = async () => {
+        setIsSubmitting(true);
+
+        try {
+            // 1) Armar payload para BD (tabla leads)
+            const payload = {
+                // Mapeo a campos del backend
+                family: formData.servicio,         // "web" | "software" | "automatizacion" | "marketing" | "otro"
+                budget: formData.presupuesto,      // "1-3" | "3-7" | "7-15" | "15+" | "flexible"
+                timeline: formData.tiempo,         // "urgente" | "normal" | "flexible" | "planificando"
+
+                full_name: formData.nombre,
+                email: formData.email,
+                company: formData.empresa || null,
+                phone: formData.telefono || null,
+                message: formData.descripcion || null,
+
+                // Guarda todas las respuestas por si mañana agregas más preguntas
+                answers: {
+                    servicio: formData.servicio,
+                    presupuesto: formData.presupuesto,
+                    tiempo: formData.tiempo,
+                    nombre: formData.nombre,
+                    empresa: formData.empresa,
+                    email: formData.email,
+                    telefono: formData.telefono,
+                    descripcion: formData.descripcion,
+                },
+
+                // tracking opcional
+                source: "web",
+                landing_url: window.location.href,
+                referrer_url: document.referrer || null,
+                utm_source: new URLSearchParams(window.location.search).get("utm_source"),
+                utm_medium: new URLSearchParams(window.location.search).get("utm_medium"),
+                utm_campaign: new URLSearchParams(window.location.search).get("utm_campaign"),
+            };
+
+            // 2) Guardar en backend
+            const res = await LeadsService.create(payload);
+            const leadId = res?.lead_id;
+
+            // 3) Armar mensaje para WhatsApp (incluye Lead ID)
+            const mensaje = `
 *Nueva Cotización - IMTP Studios*
 
 📋 *Servicio:* ${servicios.find(s => s.id === formData.servicio)?.nombre}
@@ -146,20 +183,29 @@ function CotizarPage() {
 
 📝 *Descripción:*
 ${formData.descripcion || 'Sin descripción adicional'}
+
+🆔 *Lead ID:* ${leadId || 'N/A'}
     `.trim();
 
-    const whatsappUrl = `https://wa.me/573207262477?text=${encodeURIComponent(mensaje)}`;
-    
-    setIsSubmitting(false);
-    setIsSubmitted(true);
-    
-    // Abrir WhatsApp después de mostrar confirmación
-    setTimeout(() => {
-      window.open(whatsappUrl, "_blank");
-    }, 1500);
-  };
+            const whatsappUrl = `https://wa.me/573207262477?text=${encodeURIComponent(mensaje)}`;
 
-  const getProgressWidth = () => {
+            setIsSubmitting(false);
+            setIsSubmitted(true);
+
+            // 4) Abrir WhatsApp después de mostrar confirmación
+            setTimeout(() => {
+                window.open(whatsappUrl, "_blank");
+            }, 1500);
+
+        } catch (err) {
+            console.error(err);
+            setIsSubmitting(false);
+            alert("No se pudo enviar la solicitud. Intenta de nuevo o escríbenos por WhatsApp.");
+        }
+    };
+
+
+    const getProgressWidth = () => {
     return `${(step / 4) * 100}%`;
   };
 
